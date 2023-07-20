@@ -1,3 +1,4 @@
+//Codigo formulario de consulta
 document.getElementById('contact-form').addEventListener('submit', function(event) {
 event.preventDefault(event); // Evitar el envío del formulario
   
@@ -37,6 +38,7 @@ event.preventDefault(event); // Evitar el envío del formulario
         alert("Error en la solicitud");
       });
   });
+//Fin Codigo formulario de consulta
 
 // function para font awesome
 function lanzarAlerta(title, text, icon){
@@ -47,7 +49,7 @@ function lanzarAlerta(title, text, icon){
     })
 }
 
-// Parte de js de codigo de verificacion
+//Codigo Ejecutar Modal consulta
 //Cerrar Modal 
 let closeModal = document.getElementById('modalData');
 let botonCerrar = document.querySelector("#modalData .close");
@@ -58,7 +60,6 @@ botonCerrar.addEventListener("click", function() {
 });
 //Fin Cerrar Modal 
 
-//Ejecutar Modal
 document.getElementById('myForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evitar el envío del formulario
 
@@ -92,10 +93,6 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
             let estado = document.createElement('p');
             estado.innerText = 'Estado del celular: ' + data.estado;
             modalContent.appendChild(estado);
-
-            let observacion = document.createElement('p');
-            observacion.innerText = 'Ovservaciones: ' + data.observacion;
-            modalContent.appendChild(observacion);
         }
 
         // Abrir el modal
@@ -106,8 +103,9 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
         console.log('Error: ', error);
     });
 });
+//Fin codigo Ejecutar Modal consulta
 
-//Navbar
+//inicio codigo Navbar
 const toggleBtn= document.querySelector('.toggle_btn')
 const toggleBtnIcon= document.querySelector('.toggle_btn i')
 const dropDownMenu= document.querySelector('.dropdown_menu')
@@ -120,10 +118,9 @@ toggleBtn.onclick= function(){
   ? 'fas fa-bars'
   : 'fas fa-bars'
 }
+//Fin codigo Navbar
 
-
-
-//Carrousel
+//Inicio Carrousel
 const sliderContainer= document.querySelector('.container-slider')
 const slide= document.querySelector('.slides')
 const nextBtn= document.getElementById('next-btn')
@@ -196,10 +193,9 @@ nextBtn.addEventListener('click', moveToNextSlide)
 prevBtn.addEventListener('click', moveToPreviousSlide)
 
 startSlide()
+//Fin Carrousel
 
-
-
-//Card-modal
+//Inicio Card-modal-Tarjetas de reparacion
 let popupViews= document.querySelectorAll('.popup-view')
 let poupBtns= document.querySelectorAll('.popup-btn')
 let closeBtn= document.querySelectorAll('.close-btn')
@@ -221,9 +217,6 @@ closeBtn.forEach((closeBtn) => {
       })
   })
 })
-
-
-
 
 window.onload = function() {
   const app = new App();
@@ -269,9 +262,5 @@ class App {
       this.track.style.left = `${leftPosition - carruselWidth}px`;
     }
   }
-
-  // Resto del código de la clase App
 }
-
-
- 
+//Fin Card-modal-Tarjetas de reparacion
