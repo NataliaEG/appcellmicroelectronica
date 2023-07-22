@@ -14,14 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Verificar las credenciales de inicio de sesión
-    $sql = "SELECT * FROM usuario2 WHERE usuario = '$usuario' AND clave = '$password'";
+    $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND contraseña = '$password'";
     $result = $con->query($sql);
 
     if ($result->num_rows > 0) {
         // Credenciales válidas, iniciar sesión
         $datos = $result->fetch_object();
         $_SESSION["id"] = $datos->id;
-        $_SESSION['nombre'] =  $datos->nombres. " ". $datos->apellidos;
+        $_SESSION['nombre'] =  $datos->nombre. " ". $datos->apellido;
         echo json_encode(['success' => true]);
     } else {
         // Credenciales inválidas, mostrar mensaje de error

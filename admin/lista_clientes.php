@@ -1,20 +1,20 @@
 <?php
 include("../conexion.php");
 
-$consulta = "SELECT id, cliente, codigo, modelo, falla, observacion, fecha_ingreso, fecha_salida, precio, imei, estado FROM clientes";
+$consulta = "SELECT numero, cliente, codigo, modelo, falla, observacion, fecha_ingreso, fecha_entrega, precio, imei, estado FROM trabajos";
 $resultado = mysqli_query($con, $consulta);
 
 if ($resultado && mysqli_num_rows($resultado) > 0) {
     $response = [];
     while ($fila = mysqli_fetch_assoc($resultado)) {
-        $id = $fila['id'];
+        $id = $fila['numero'];
         $cliente = $fila['cliente'];
         $codigo = $fila['codigo'];
         $modelo = $fila['modelo'];
         $falla = $fila['falla'];
         $observacion = $fila['observacion'];
         $fecha_ingreso = $fila['fecha_ingreso'];
-        $fecha_salida = $fila['fecha_salida'];
+        $fecha_salida = $fila['fecha_entrega'];
         $precio = $fila['precio'];
         $imei = $fila['imei'];
         $estado = $fila['estado'];

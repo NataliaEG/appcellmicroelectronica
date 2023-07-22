@@ -18,10 +18,10 @@ $response = [
 ];
 
 if (
-    $cliente && $codigo && $modelo && $falla && $observacion && $fecha_ingreso && $fecha_salida && $precio && $imei && $estado
+    $cliente && $codigo && $modelo && $falla && $observacion && $fecha_ingreso && $fecha_entrega && $precio && $imei && $estado
 ) {
-    $sql = "INSERT INTO clientes (cliente, codigo, modelo, falla, observacion, fecha_ingreso, fecha_salida, precio, imei, estado) 
-                        VALUES ('$cliente', '$codigo', '$modelo', '$falla', '$observacion', '$fecha_ingreso', '$fecha_salida', '$precio', '$imei', '$estado')";
+    $sql = "INSERT INTO trabajos (cliente, codigo, modelo, falla, observacion, fecha_ingreso, fecha_salida, precio, imei, estado) 
+                        VALUES ('$cliente', '$codigo', '$modelo', '$falla', '$observacion', '$fecha_ingreso', '$fecha_entrega', '$precio', '$imei', '$estado')";
 
     if (mysqli_query($con, $sql)) {
         $response = [
