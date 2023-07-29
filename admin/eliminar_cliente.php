@@ -3,7 +3,7 @@ include("../conexion.php");
 
 // Obtener el ID del cliente del cuerpo de la solicitud
 $data = json_decode(file_get_contents('php://input'), true);
-$idCliente = $data['id'] ?? null;
+$idCliente = $data['numero'] ?? null;
 
 $response = [
   'success' => false,
@@ -11,7 +11,7 @@ $response = [
 ];
 
 if ($idCliente) {
-  $sql = "DELETE FROM clientes WHERE id = $idCliente";
+  $sql = "DELETE FROM trabajos WHERE numero = $idCliente";
 
   if (mysqli_query($con, $sql)) {
     $response = [

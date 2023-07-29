@@ -1,6 +1,4 @@
 <?php 
-
-include("../conexion.php");  
 require_once "vistas/parte_superior.php"; 
 ?>
     <style>
@@ -86,7 +84,7 @@ require_once "vistas/parte_superior.php";
 
     <!--Filtro de estado 2-->
     <div class="col-4 col-sm-4">
-      <select name="estado" id="estado" class="form-select">
+      <select name="estado" id="estado" class="form-select" style=" width: 104%;">
         <option value="">SELECCIONAR ESTADO</option>
         <option value="RECIBIDO">RECIBIDO</option>
         <option value="DIAGNOSTICADO">DIAGNOSTICADO</option>
@@ -121,8 +119,9 @@ require_once "vistas/parte_superior.php";
             <table class="table table-bordered table-md text-center"  id="tblClientes">
                 <thead class=" thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Numero ID</th>
                         <th scope="col">Cliente</th>
+                        <th scope="col">Telefono</th>
                         <th scope="col">Codigo</th>
                         <th scope="col">Modelo</th>
                         <th scope="col">Falla</th>
@@ -156,8 +155,8 @@ require_once "vistas/parte_superior.php";
         <div class="modal-body">
          <form id="form-editar">
             <div class="mb-3">
-             <label for="id" class="form-label">ID</label>
-             <input type="text" class="form-control" id="id" name="id">
+             <label for="numero" class="form-label">Numero</label>
+             <input type="text" class="form-control" id="numero" name="numero">
             </div>
 
             <div class="mb-3">
@@ -166,8 +165,13 @@ require_once "vistas/parte_superior.php";
             </div>
 
             <div class="mb-3">
+             <label for="telefono" class="form-label">Telefono</label>
+             <input type="text" class="form-control" id="telefono" name="telefono">
+            </div>
+
+            <div class="mb-3">
              <label for="codigo" class="form-label">Código</label>
-             <input type="text" class="form-control" id="codigo" name="codigo" required>
+             <input type="text" class="form-control" id="codigo" name="codigo">
             </div>
 
             <div class="mb-3">
@@ -191,8 +195,8 @@ require_once "vistas/parte_superior.php";
             </div>
 
             <div class="mb-3">
-             <label for="fecha_salida" class="form-label">Fecha de Salida</label>
-             <input type="date" class="form-control" id="fecha_salida" name="fecha_salida" required>
+             <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
+             <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
             </div>
 
             <div class="mb-3">
@@ -230,12 +234,12 @@ require_once "vistas/parte_superior.php";
 <!--Fin Modal editar-->
 
 
-<!-- Modal Insertar clientes -->
+<!-- Modal Insertar Trabajo -->
 <div class="modal fade" id="modal-insertar" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Insertar Nuevo Cliente</h5>
+        <h5 class="modal-title">Insertar Nuevo Trabajo</h5>
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">×</span>
           <span class="sr-only">Close</span>
@@ -245,11 +249,16 @@ require_once "vistas/parte_superior.php";
         <form id="form_agregar">
           <div class="mb-3">
             <label for="modal-cliente" class="form-label" name="modal-cliente">Cliente</label>
-            <input type="text" class="form-control"  id="modal-cliente" required>
+            <input type="text" class="form-control"  id="modal-cliente"  required>
+          </div>
+          <div class="mb-3">
+            <label for="modal-telefono" class="form-label" name="modal-telefono">Telefono</label>
+            <input type="text" class="form-control"  id="modal-telefono"  required>
           </div>
           <div class="mb-3">
             <label for="modal-codigo" class="form-label" name="modal-codigo">Código</label>
-            <input type="text" class="form-control" id="modal-codigo" required>
+            <input type="text" class="form-control" id="modal-codigo" disabled>
+            <button class="btn btn-primary" onclick="generateRandomNumber()">Generar Codigo</button>
           </div>
           <div class="mb-3">
             <label for="modal-modelo" class="form-label" name="modal-modelo">Modelo</label>
@@ -268,8 +277,8 @@ require_once "vistas/parte_superior.php";
             <input type="date" class="form-control" id="modal-fecha_ingreso" required>
           </div>
           <div class="mb-3">
-            <label for="modal-fecha_salida" class="form-label" name="modal-fecha_salida">Fecha de Salida</label>
-            <input type="date" class="form-control" id="modal-fecha_salida" required>
+            <label for="modal-fecha_entrega" class="form-label" name="modal-fecha_entrega">Fecha de Entrega</label>
+            <input type="date" class="form-control" id="modal-fecha_entrega" required>
           </div>
           <div class="mb-3">
             <label for="modal-precio" class="form-label" name="modal-precio">Precio</label>
