@@ -47,15 +47,17 @@ if(isset($_SESSION['nombre'])){
         </li>
 
         <li>
+          <a href="#titulo_nosotros">Nosotros</a>
+        </li>
+
+        
+
+        <li>
+          <a href="#titulo_reparacion">Servicios</a>
+        </li>
+
+        <li>
           <a href="#titulo_dispositivo">Ver mi equipo</a>
-        </li>
-
-        <li>
-          <a href="#titulo_servicios">Nosotros</a>
-        </li>
-
-        <li>
-          <a href="#titulo_reparacion">Servicos</a>
         </li>
 
         <li>
@@ -82,17 +84,17 @@ if(isset($_SESSION['nombre'])){
         <li>
             <a href="index.php">Inicio</a>
         </li>
+        
+        <li>
+          <a href="#titulo_nosotros">Nosotros</a>
+        </li>
 
         <li>
           <a href="#titulo_dispositivo">Ver mi equipo</a>
         </li>
 
         <li>
-          <a href="#titulo_servicios">Nosotros</a>
-        </li>
-
-        <li>
-          <a href="#titulo_reparacion">Servicos</a>
+          <a href="#titulo_reparacion">Servicios</a>
         </li>
 
         <li>
@@ -113,6 +115,9 @@ if(isset($_SESSION['nombre'])){
  <!--fin navbar-->
 
 
+
+      
+
 <!--Inicio Parte principal-->
 <div class="col-sm-6 col-md-12 imagen_fondo text-center">
     <div  class="texto-imagen">
@@ -120,6 +125,60 @@ if(isset($_SESSION['nombre'])){
   </div>         
 <!--fin Parte principal-->
 <div class="container">
+
+
+<!--Inicio Sobre Nosotros-->
+<h3 id="titulo_nosotros" class="text-center mt-5 mb-5"><i class="fas fa-user"></i> Sobre Nosotros</h3>
+
+<div class="contenedor mt-3 mb-3">
+  <div class="text">
+    <h3  class="text-seccion">Nosotros</h3> 
+    <p>Somos especialista en reparación y servicio <br>
+      técnico de dispositivos Apple en Argentina. <br>
+      Contamos con un laboratorio propio de <br>
+      microelectrónica, ademas de capacitación permanente y<br>
+      personal calificado. Trabajamos con los mejores <br>
+      repuestos homologados, con amplio stock y las <br>
+      mejores herramientas en constante actualización. <br> 
+      Si buscas una solucion seria y confiable, te <br>
+      esperamos. Solicita tu presupuesto y pone tu <br>
+      dispositivos en manos de verdaderos <br>
+      profesionales. <br>
+  </div>
+    <img src="img/appcell-2.jpg" class="imagen" id="imagen_appcell" >
+  </p>
+</div>
+<!-- Fin sobre nosotros -->
+
+
+<!--Inicio cuadros-->
+<h3 id="titulo_servicios" class="text-center mt-5 mb-5">
+  
+  <img src="img/manos-icono.png" width="30px">Te proporcionamos:</h3>   
+  
+  <div id="cuadros" class="mt-3 mb-3">
+      <div id="cuadro_bg" class="col-6 col-sm-12 text-center mt-3">
+        <h4><i class="fas fa-paste"></i><strong> Presupuesto</strong></h4>
+        <p>Utiliza nuestra herramienta de presupuestos en línea, sin ningún compromiso, para verificar las tarifas de reparación de tu dispositivo y obtener una estimación precisa de los costos antes de tomar cualquier decisión.</p>
+      </div>
+
+      <div id="cuadro_bg" class="col-6 col-sm-12 text-center mt-3">
+        <h4><i class="fas fa-dollar-sign"></i><strong> Descuento</strong></h4>
+        <p>En caso de que se requiera reparar múltiples componentes en tu dispositivo Apple, te brindamos la opción de disfrutar de descuentos aplicables al precio total de la reparación, asegurando así un beneficio económico adicional para ti.</p>
+      </div>
+
+      <div id="cuadro_bg" class="col-6 col-sm-12 text-center mt-3">
+        <h4><i class="fas fa-truck"></i><strong>Recepción de equipos desde cualquier punto del país</strong></h4>
+        <p>Con nuestro servicio de Recepción Nacional, nos aseguramos de que la distancia no sea un obstáculo para recibir la atención que tus equipos merecen.</p>
+      </div>
+
+      <div id="cuadro_bg" class="col-6 col-sm-12 text-center mt-3">
+        <h4><i class="fas fa-credit-card"></i><strong> Realiza el pago</strong></h4>
+
+        <p>Ofrecemos diversas opciones de pago, incluyendo tarjetas de crédito, transferencias bancarias y pagos en efectivo, para brindarte flexibilidad y comodidad al momento de abonar por nuestros servicios</p>
+      </div>
+  </div>
+<!--Fin cuadros-->
 
 
 <!-- Inicio Tarjetas de reparacion-->
@@ -248,59 +307,43 @@ if(isset($_SESSION['nombre'])){
 <!-- Fin Tarjetas de reparacion-->
 
 
-<!--Inicio cuadros-->
-<h3 id="titulo_servicios" class="text-center mt-5 mb-5">
+
+<!--Inicio Formulario consulta-->
+<h3 id="titulo_dispositivo" class="text-center mt-5 mb-5"><img src="img/hojo-icono.png" width="30px"> Ver estado de mi equipo</h3>
+      <div class="container formconsulta">
+          <h4>Verificación de código de consulta</h4>
+          <p>Por favor, ingrese el 
+            código que le proporcionamos
+             para rastrear el estado de 
+             su equipo mientras se 
+             encuentra en nuestro centro
+              de reparación.
+          </p>
+          <form id="myForm">
+              <div class="form-group">
+                  <input type="text" class="form-control" id="codigo"   name="codigo" required>
+              </div>
+              <button type="submit" class="btn btn-primary mt-3">Verificar</button>
+          </form>
+      </div>
+
+      <div id="modalData" class="modal fade" tabindex="-1"  role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Datos del cliente</h5>
+                  <button type="button" class="close btn btn-dark" data-dismiss="modal" aria-label="Cerrar">x</button>
+
+              </div>
+              <div class="modal-body">
+                <div id="modalContent"></div>
+              </div>
+            </div>
+        </div>
+      </div>
   
-  <img src="img/manos-icono.png" width="30px">Te proporcionamos:</h3>   
-  
-  <div id="cuadros" class="mt-3 mb-3">
-      <div id="cuadro_bg" class="col-6 col-sm-12 text-center mt-3">
-        <h4><i class="fas fa-paste"></i><strong> Presupuesto</strong></h4>
-        <p>Utiliza nuestra herramienta de presupuestos en línea, sin ningún compromiso, para verificar las tarifas de reparación de tu dispositivo y obtener una estimación precisa de los costos antes de tomar cualquier decisión.</p>
-      </div>
+<!--Fin Formulario consulta-->
 
-      <div id="cuadro_bg" class="col-6 col-sm-12 text-center mt-3">
-        <h4><i class="fas fa-dollar-sign"></i><strong> Descuento</strong></h4>
-        <p>En caso de que se requiera reparar múltiples componentes en tu dispositivo Apple, te brindamos la opción de disfrutar de descuentos aplicables al precio total de la reparación, asegurando así un beneficio económico adicional para ti.</p>
-      </div>
-
-      <div id="cuadro_bg" class="col-6 col-sm-12 text-center mt-3">
-        <h4><i class="fas fa-truck"></i><strong>Recepción de equipos desde cualquier punto del país</strong></h4>
-        <p>Con nuestro servicio de Recepción Nacional, nos aseguramos de que la distancia no sea un obstáculo para recibir la atención que tus equipos merecen.</p>
-      </div>
-
-      <div id="cuadro_bg" class="col-6 col-sm-12 text-center mt-3">
-        <h4><i class="fas fa-credit-card"></i><strong> Realiza el pago</strong></h4>
-
-        <p>Ofrecemos diversas opciones de pago, incluyendo tarjetas de crédito, transferencias bancarias y pagos en efectivo, para brindarte flexibilidad y comodidad al momento de abonar por nuestros servicios</p>
-      </div>
-  </div>
-<!--Fin cuadros-->
-
-
-<!--Inicio Sobre Nosotros-->
-<h3 id="titulo_servicios" class="text-center mt-5 mb-5"><i class="fas fa-user"></i> Sobre Nosotros</h3>
-
-<div class="contenedor mt-3 mb-3">
-  <div class="text">
-    <h3  class="text-seccion">Nosotros</h3> 
-    <p>Somos especialista en reparación y servicio <br>
-      técnico de dispositivos Apple en Argentina. <br>
-      Contamos con un laboratorio propio de <br>
-      microelectrónica, ademas de capacitación permanente y<br>
-      personal calificado. Trabajamos con los mejores <br>
-      repuestos homologados, con amplio stock y las <br>
-      mejores herramientas en constante actualización. <br> 
-      Si buscas una solucion seria y confiable, te <br>
-      esperamos. Solicita tu presupuesto y pone tu <br>
-      dispositivos en manos de verdaderos <br>
-      profesionales. <br>
-  </div>
-    <img src="img/appcell-2.jpg" class="imagen" id="imagen_appcell" >
-  </p>
-</div>
-<!-- Fin sobre nosotros -->
-      
 
 
 <!--inicio carrousel-->
@@ -400,7 +443,7 @@ if(isset($_SESSION['nombre'])){
 
 
 <!--inicio form-contacto--> 
-<h3 id="titulo_contacto" class="text-center mt-5 mb-2">
+<h3 id="titulo_contacto" class="text-center mt-5 mb-5">
     <img src="img/hoja-icono.png" width="30px"> 
     Formulario de Contacto
   </h3>
@@ -465,42 +508,6 @@ if(isset($_SESSION['nombre'])){
 <!--Fin form-contacto-->
 
 
-
-<!--Inicio Formulario consulta-->
-      <h3 id="titulo_dispositivo" class="text-center mt-5 mb-5"><img src="img/hojo-icono.png" width="30px"> Ver estado de mi equipo</h3>
-      <div class="container formconsulta">
-          <h4>Verificación de código de consulta</h4>
-          <p>Por favor, ingrese el 
-            código que le proporcionamos
-             para rastrear el estado de 
-             su equipo mientras se 
-             encuentra en nuestro centro
-              de reparación.
-          </p>
-          <form id="myForm">
-              <div class="form-group">
-                  <input type="text" class="form-control" id="codigo"   name="codigo" required>
-              </div>
-              <button type="submit" class="btn btn-primary mt-3">Verificar</button>
-          </form>
-      </div>
-
-      <div id="modalData" class="modal fade" tabindex="-1"  role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title">Datos del cliente</h5>
-                  <button type="button" class="close btn btn-dark" data-dismiss="modal" aria-label="Cerrar">x</button>
-
-              </div>
-              <div class="modal-body">
-                <div id="modalContent"></div>
-              </div>
-            </div>
-        </div>
-      </div>
-  
-<!--Fin Formulario consulta-->
 
 
 
