@@ -400,6 +400,7 @@ footer{
     display: flex;
     flex-direction: column;
     gap: 50px;
+    background-image: url(./img/contactano.png);
 }
 
 
@@ -1092,3 +1093,5 @@ footer{
     }
     
 }
+
+ 

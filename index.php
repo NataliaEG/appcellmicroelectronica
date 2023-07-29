@@ -399,23 +399,23 @@ if(isset($_SESSION['nombre'])){
 <!--Fin carrousel-->
 
 
-<!--inicio form-contacto-->
-  <h3 id="titulo_contacto" class="text-center mt-5 mb-5">
+<!--inicio form-contacto--> 
+<h3 id="titulo_contacto" class="text-center mt-5 mb-2">
     <img src="img/hoja-icono.png" width="30px"> 
     Formulario de Contacto
   </h3>
 
   <div class="container-form-contacto">
     <div class="box-info">
+    <h3>Complete este formulario para contactarnos</h3>
+ 
 
-
-      <div class="data">
-            <h3>Complete este formulario para contactarnos</h3>
-
-        <p><i class="fas fa-phone"></i>Tel: 3455465567</p>
-        <p><i class="fas fa-envelope"></i>Email: Nicolasgomez8010@gmail.com</p>
-        <p><i class="fas fa-map"></i>Ubicacion: Calle 3254</p>
-      </div>
+      <!-- <div class="links">
+          <a href="#"><i class="fas fa-square-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+      </div> -->
     </div>
     
     <form id="contact-form" method="POST" class="form-cons">
@@ -427,19 +427,31 @@ if(isset($_SESSION['nombre'])){
 
       <div class="input-box">
         <select id="modelo" name="modelo" required>
-          <option value="">Seleccionar modelo</option>
-          <option value="Modelo 1">Modelo 1</option>
-          <option value="Modelo 2">Modelo 2</option>
-          <option value="Modelo 3">Modelo 3</option>
+          <option value="">Selecciona tu dispositivo</option>
+          <option value="Modelo 1">Iphone 14</option>
+          <option value="Modelo 2">Iphone 13</option>
+          <option value="Modelo 3">Iphone 12</option>
+          <option value="Modelo 4">Iphone 11</option>
+          <option value="Modelo 5">Iphone X</option>
+          <option value="Modelo 6">Iphone 8</option>
+          <option value="Modelo 7">Iphone 7</option>
+          <option value="Modelo 8">Iphone 6</option>
+          <option value="Modelo 9">Ipad</option>
+          <option value="Modelo 10">Macbook</option>
+          <option value="Modelo 11">Apple whatch</option>
+          <option value="Modelo 12">Otro </option>
         </select>
       </div>
 
       <div class="input-box">
         <select id="problema" name="problema" required>
-          <option value="">Seleccionar problema</option>
-          <option value="Problema 1">Problema 1</option>
-          <option value="Problema 2">Problema 2</option>
-          <option value="Problema 3">Problema 3</option>
+          <option value="">Selecciona el problema</option>
+          <option value="Problema 1">Pantalla</option>
+          <option value="Problema 2">Vidrio trasero</option>
+          <option value="Problema 3">Bateria</option>
+          <option value="Problema 4">Camaras</option>
+          <option value="Problema 5">Placa</option>
+          <option value="Problema 6">Otro problema</option>
         </select>
       </div>
 
@@ -451,6 +463,8 @@ if(isset($_SESSION['nombre'])){
     </form>
   </div>
 <!--Fin form-contacto-->
+
+
 
 <!--Inicio Formulario consulta-->
       <h3 id="titulo_dispositivo" class="text-center mt-5 mb-5"><img src="img/hojo-icono.png" width="30px"> Ver estado de mi equipo</h3>
