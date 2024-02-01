@@ -11,7 +11,7 @@ if (!isset($_SESSION['nombre'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,6 +40,7 @@ if (!isset($_SESSION['nombre'])) {
     <link rel="icon" href="../img/favicon-32x32.png" type="image/ico">
 </head>
 
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -60,7 +61,8 @@ if (!isset($_SESSION['nombre'])) {
             <li class="nav-item active">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-hammer"></i>
-                    <span>Vista Trabajos</span></a>
+                    <span>Vista Trabajos</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -195,6 +197,16 @@ if (!isset($_SESSION['nombre'])) {
                         </div>
                     </form> -->
 
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="index.php" id="userDropdown1" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            type="button" onclick="history.back()">
+                                <p><i class="fas fa-arrow-left"></i> Volver Inicio</p>
+                        </a>
+ 
+                    </li> 
+
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -221,7 +233,7 @@ if (!isset($_SESSION['nombre'])) {
                                 </form>
                             </div>
                         </li>
-
+                        
                         <!-- Nav Item - Alerts -->
                         <!-- <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
