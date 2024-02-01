@@ -26,7 +26,7 @@ require_once "vistas/parte_superior.php";
     
     <!--Filtro de estado 2-->
     <div class="col-4 col-sm-4">
-      <select name="estado" id="estado" class="form-select">
+      <select  id="estado" class="form-select" style=" width: 104%;">
         <option value="">SELECCIONAR ESTADO</option>
         <option value="RECIBIDO">RECIBIDO</option>
         <option value="DIAGNOSTICADO">DIAGNOSTICADO</option>
@@ -97,7 +97,7 @@ require_once "vistas/parte_superior.php";
         <div class="modal-body">
          <form id="form-editar">
             <div class="mb-3">
-             <label for="id" class="form-label">ID</label>
+             <label for="id" class="form-label">id</label>
              <input type="text" class="form-control" id="id" name="id">
             </div>
 

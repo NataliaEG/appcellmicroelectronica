@@ -24,7 +24,7 @@ function cargarDatos(arrayClientes) {
  
   arrayClientes.forEach(
     ({
-      numero,
+      id,
       cliente,
       telefono,
       codigo,
@@ -41,7 +41,7 @@ function cargarDatos(arrayClientes) {
       tarjeta.className = "tarjeta";
 
       tarjeta.innerHTML = `
-        <td scope="row">${numero}</td>
+        <td scope="row">${id}</td>
         <td scope="row">${cliente}</td>
         <td scope="row">${telefono}</td>
         <td scope="row">${codigo}</td>
@@ -54,12 +54,12 @@ function cargarDatos(arrayClientes) {
         <td scope="row">${imei}</td>
         <td scope="row">${estado}</td>
         <td>
-          <a class="btn btn-primary" id="actualizar" onclick="editarModal(${id})" value="${id}">
+          <a class="btn btn-primary" onclick="editarModal(${id})" value="${id}">
             <i class="fa fa-edit"></i>
           </a>
         </td>
         <td>
-          <button  class="btn btn-danger" id="borrar"  onclick="borrarCliente(event)" data-id="${numero}">
+          <button  class="btn btn-danger" id="borrar"  onclick="borrarCliente(event)" data-id="${id}">
             <i class="fa fa-trash"></i>
           </button>
         </td>
@@ -93,7 +93,7 @@ btn_actualizar.addEventListener("click", function(e){
     e.preventDefault(); // Evitar el envío del formulario
 
     // Obtención de datos
-    const numero = document.getElementById("numero").value;
+    const id = document.getElementById("id").value;
     const cliente = document.getElementById("cliente").value;
     const telefono = document.getElementById("telefono").value;
     const codigo = document.getElementById("codigo").value;
@@ -113,10 +113,10 @@ btn_actualizar.addEventListener("click", function(e){
       return;
     }
 
-    fetch(`editar_cliente.php?id=${numero}&opcion=modificar`, {
+    fetch(`editar_cliente.php?id=${id}&opcion=modificar`, {
       method: "POST",
       body: JSON.stringify({
-        numero,
+        id,
         cliente,
         telefono,
         codigo,
@@ -149,26 +149,27 @@ btn_actualizar.addEventListener("click", function(e){
   });
 
 //traer los datos al modal editar
-function editarModal(numero) {
+function editarModal(id) {
   // Abrir modal
   $("#modal-editar").modal("show");
   // Obtener datos del elemento
   fetch(`editar_cliente.php?id=${id}`)
-    .then((response) => response.json())
-    .then((elemento) => {
-      // Rellenar el formulario
-      document.getElementById("id").value = elemento[0].id;
-      document.getElementById("cliente").value = elemento[0].cliente;
-      document.getElementById("codigo").value = elemento[0].codigo;
-      document.getElementById("modelo").value = elemento[0].modelo;
-      document.getElementById("falla").value = elemento[0].falla;
-      document.getElementById("observacion").value = elemento[0].observacion;
-      document.getElementById("fecha_ingreso").value = elemento[0].fecha_ingreso;
-      document.getElementById("fecha_salida").value = elemento[0].fecha_salida;
-      document.getElementById("precio").value = elemento[0].precio;
-      document.getElementById("imei").value = elemento[0].imei;
-      document.getElementById("estado").value = elemento[0].estado;
-    });
+  .then((response) => response.json())
+  .then((elemento) => {
+    // Rellenar el formulario
+    document.getElementById("id").value = elemento[0].id;
+    document.getElementById("cliente").value = elemento[0].cliente;
+    document.getElementById("telefono").value = elemento[0].telefono;
+    document.getElementById("codigo").value = elemento[0].codigo;
+    document.getElementById("modelo").value = elemento[0].modelo;
+    document.getElementById("falla").value = elemento[0].falla;
+    document.getElementById("observacion").value = elemento[0].observacion;
+    document.getElementById("fecha_ingreso").value = elemento[0].fecha_ingreso;
+    document.getElementById("fecha_entrega").value = elemento[0].fecha_entrega;
+    document.getElementById("precio").value = elemento[0].precio;
+    document.getElementById("imei").value = elemento[0].imei;
+    document.getElementById("estado").value = elemento[0].estado;
+  });
 }
 
 //----------------Mostrar alerta----------------------------
@@ -186,7 +187,7 @@ function lanzarAlerta(title, text, icon){
 function borrarCliente(event) {
   const button = event.target;
   // Obtener el ID del cliente del atributo "data-id" del botón
-  const numero = button.getAttribute("data-id");
+  const id = button.getAttribute("data-id");
 
   // Confirmar la eliminación con el usuario
   //if (confirm("¿Estás seguro de que deseas eliminar este cliente?")) {
@@ -209,7 +210,7 @@ function borrarCliente(event) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ numero: numero })
+      body: JSON.stringify({ id: id })
     })
       .then(response => response.json())
       .then(data => {
@@ -306,43 +307,53 @@ formulario.addEventListener("submit", (event) => {
  
 
 //---------------Filtrar estado--------------------------
-// let inputOption= document.getElementsByClassName("input")
+let selectEstado = document.getElementById("estado")
 
-// for(const input of inputOption){
-//   input.addEventListener("click", filtrarPorEstado)
-// }
-
-// function filtrarPorEstado(e){
-//   let estados= []
-//   for(const input of inputOption){
-//     if(input.checked){
-//       estados.push(input.id)
-//     }
-//   }
-//   let arrayFiltrado= obj.filter(ob => estados.includes(ob.estado))
-//   cargarDatos(arrayFiltrado.length > 0 ? arrayFiltrado : obj)
-// }
-
-
-let selectEstado = document.getElementById("estado");
-
-selectEstado.addEventListener("change", filtrarEstado);
-
-function filtrarEstado() {
-  let estadoSeleccionado = selectEstado.value;
-  
-  if (estadoSeleccionado !== "") {
-    let arrayFiltrado = obj.filter(ob => ob.estado === estadoSeleccionado);
-    cargarDatos(arrayFiltrado);
-  } else {
-    cargarDatos(obj);
+function filtrarPorEstado(clientes, estadoSeleccionado) {
+  let arrayFiltrado = [];
+  for (let i = 0; i < clientes.length; i++) {
+    if (clientes[i].estado === estadoSeleccionado) {
+      arrayFiltrado.push(clientes[i]);
+    }
   }
+  return arrayFiltrado;
 }
 
+fetch("lista_clientes.php")
+      .then((response) =>  response.json())
+      .then((datos) => {
 
-//-------------Paginacion-----------------
+        // Uso de la función
+      selectEstado.addEventListener("change", () => {
+        let estadoSeleccionado = selectEstado.value;
+        let arrayFiltrado = filtrarPorEstado(datos, estadoSeleccionado);
+        cargarDatos(arrayFiltrado);
+      });
+    });
 
-// Ejemplo de uso
+    //-------------Paginacion-----------------
+function cargarPagina(page, pageSize) {
+  const url = `paginacion.php?page=${page}&pageSize=${pageSize}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      // En este punto, 'data' contiene los datos de la página solicitada
+      // Aquí debes actualizar la tabla con los nuevos datos recibidos
+      cargarDatos(data.data);
+
+      // Luego, actualizamos los controles de paginación con los datos recibidos
+      actualizarControlesPaginacion(page, pageSize, data.total);
+    })
+    .catch(error => {
+      // Manejo de errores si la solicitud falla
+      console.error('Error al cargar la página:', error);
+    });
+}
+
+// Llamada inicial para cargar la primera página
+cargarPagina(1, 5); // Puedes ajustar los valores de página y pageSize según tus necesidades
+
 // Función para actualizar los controles de paginación
 function actualizarControlesPaginacion(page, pageSize, total) {
   const anteriorElement = document.getElementById('anterior');
@@ -387,7 +398,8 @@ let letras= "abcdefghijklmnopqrstuvwxyz"
 let todo= numeros + letras
 
 function generateRandomNumber() {
-  let longitud= 15
+
+  let longitud= 6
   let password= ""
   for(let x = 0; x<longitud; x++){
     let aleatorio= Math.floor(Math.random() * todo.length)
