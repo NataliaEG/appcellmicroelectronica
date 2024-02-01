@@ -51,8 +51,8 @@ body {
 
     .navbar .links{
         display: flex;
-        gap: 4rem;
-         margin-right: 14rem;
+        gap: 2rem;
+        margin-right: 2rem;
         margin-bottom: 3rem;
     }
 
@@ -105,11 +105,17 @@ body {
         height: 240px;
     }
 
+    .dropdown_menu.open {
+        height: 253px;
+        padding: 20px;
+        position: fixed;
+        z-index: 5;
+    }
 
     .dropdown_menu li{
         padding: 0.7rem;
         display: flex;
-        height: 15%;
+        height: 13%;
         margin: 3px;
         align-items: center;
         justify-content: center;
@@ -1039,7 +1045,7 @@ footer{
     margin: 25px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    text-align: left;
     color:#f9f9f9;
 }
 
@@ -1055,12 +1061,12 @@ footer{
 @media (min-width:820px){
     .contenedor {
         font-size: 24px;
-        text-align: center;
         flex-direction: column-reverse;
     }
 
     .imagen {
-        width: 525px;
+        padding: 10px;
+        width: 520px;
         height: 340px;
         margin-bottom: 30px;
     }
@@ -1070,7 +1076,6 @@ footer{
 @media (max-width: 560px) {
     .contenedor {
         margin: 4px;
-        text-align: center;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1089,7 +1094,6 @@ footer{
 @media (min-width: 1024px) {
     .contenedor {
         font-size: 21px;
-        text-align: center;
         flex-direction: inherit;
     }
     

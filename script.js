@@ -93,6 +93,10 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
             let estado = document.createElement('p');
             estado.innerText = 'Estado del celular: ' + data.estado;
             modalContent.appendChild(estado);
+
+            let observacion = document.createElement('p');
+            observacion.innerText = 'Observacion del celular: ' + data.observacion;
+            modalContent.appendChild(observacion);
         }
 
         // Abrir el modal

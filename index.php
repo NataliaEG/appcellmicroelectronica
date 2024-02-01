@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION['nombre'])){
-    // En caso contrario redirigimos el visitante a otra página
+    // En caso contrario redirigimos al visitante a otra página
     header('Location: login/login.php');
     die();
 }
@@ -66,9 +66,11 @@ if(isset($_SESSION['nombre'])){
           <a href="#titulo_contacto">Contacto</a>
         </li>
 
+        
+
         <li>
           <a href="login/login.php" class="action_btn">      
-            Registrarse
+            <i class="fas fa-user"></i>
           </a>
         </li>
       </ul>
@@ -249,7 +251,6 @@ if(isset($_SESSION['nombre'])){
 
 
 <!--Inicio cuadros-->
-<hr class="sidebar-divider">
 <h3 id="titulo_servicios" class="text-center mt-5 mb-5">
   
   <img src="img/manos-icono.png" width="30px">Te proporcionamos:</h3>   
@@ -280,7 +281,6 @@ if(isset($_SESSION['nombre'])){
 
 
 <!--Inicio Sobre Nosotros-->
-<hr class="sidebar-divider">
 <h3 id="titulo_servicios" class="text-center mt-5 mb-5"><i class="fas fa-user"></i> Sobre Nosotros</h3>
 
 <div class="contenedor mt-3 mb-3">
@@ -306,7 +306,6 @@ if(isset($_SESSION['nombre'])){
 
 
 <!--inicio carrousel-->
-<hr class="sidebar-divider">
 <h3 id="titulo_trabajos" class="text-center text-center mt-5 mb-5">
   
   <img src="img/destornillador-icono.png" width="30px">
@@ -403,7 +402,6 @@ if(isset($_SESSION['nombre'])){
 
 
 <!--inicio form-contacto-->
-  <hr class="sidebar-divider">
   <h3 id="titulo_contacto" class="text-center mt-5 mb-5">
     <img src="img/hoja-icono.png" width="30px"> 
     Formulario de Contacto
@@ -457,7 +455,6 @@ if(isset($_SESSION['nombre'])){
 <!--Fin form-contacto-->
 
 <!--Inicio Formulario consulta-->
-  <hr class="sidebar-divider">
       <h3 id="titulo_dispositivo" class="text-center mt-5 mb-5"><img src="img/hojo-icono.png" width="30px"> Ver estado de mi equipo</h3>
       <div class="container formconsulta">
           <h4>Verificación de código de consulta</h4>
@@ -496,7 +493,6 @@ if(isset($_SESSION['nombre'])){
 
 
 <!-- Inicio carrousel Instagram-->
-<hr class="sidebar-divider">
 <h3 id="titulo_instagram" class="text-center mt-5 mb-5"><img src="img/instagram-icono-blanco.png" width="30px" alt="" srcset=""> Publicaciones De Instagram:</h3>
 
 <div class="carrusel-list mt-3 mb-3" id="carrusel-list2">
@@ -601,7 +597,7 @@ if(isset($_SESSION['nombre'])){
     <li class="menu-item">Servicios</li>
     <li class="menu-item">Trabajos</li> -->
   </ul>
-  <span>Copyright &copy;  Appcel 2023</span>
+  <span>Copyright &copy;  Appcel 2024</span>
 </footer>
 <!--Fin Footer--> 
 

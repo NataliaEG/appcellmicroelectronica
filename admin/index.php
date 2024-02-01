@@ -23,68 +23,10 @@ require_once "vistas/parte_superior.php";
     <button class="btn btn-primary boton col-4 col-sm-4" data-toggle="modal" data-target="#modal-insertar">
       Agregar <i class="fas fa-user"></i>
     </button>
-
-    <!--Filtro de estado 1-->
-      <!-- <div class="form-check form-check-inline">
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="sin solucion"  value="sin_solucion">
-              SIN SOLUCCION
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="demorado"  value="demorado">
-              DIAGNOSTICADO
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="entregado a cobrar"  value="entregado_a_cobrar">
-              ENTREGADO A COBRAR
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="entregado"  value="entregado">
-              ENTREGADO
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="reparado cerrado"  value="reparado_cerrado">
-              REPARADO CERRADO
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="reparado abierto"  value="reparado_abierto">
-              REPARADO ABIERTO
-          </label>
-          
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="en reparacion"  value="en_reparacion">
-              EN REPARACION
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="recibido"  value="recibido">
-              RECIBIDO
-          </label>
-      
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="diagnosticado"  value="diagnosticado">
-              DIAGNOSTICADO
-          </label>
-        </div> -->
-    <!--Fin filtro de estado-->
-
+    
     <!--Filtro de estado 2-->
     <div class="col-4 col-sm-4">
-      <select name="estado" id="estado" class="form-select" style=" width: 104%;">
+      <select  id="estado" class="form-select" style=" width: 104%;">
         <option value="">SELECCIONAR ESTADO</option>
         <option value="RECIBIDO">RECIBIDO</option>
         <option value="DIAGNOSTICADO">DIAGNOSTICADO</option>
@@ -155,8 +97,8 @@ require_once "vistas/parte_superior.php";
         <div class="modal-body">
          <form id="form-editar">
             <div class="mb-3">
-             <label for="numero" class="form-label">Numero</label>
-             <input type="text" class="form-control" id="numero" name="numero">
+             <label for="id" class="form-label">id</label>
+             <input type="text" class="form-control" id="id" name="id">
             </div>
 
             <div class="mb-3">

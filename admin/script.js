@@ -1,35 +1,30 @@
 //Enviar los datos del modal editar
-const btn_actualizar= document.getElementById("actualizar")
-
+const btn_actualizar= document.getElementById("actualizar");
 const formulario = document.getElementById("form_agregar");
-
+let obj        
 let buscador= document.getElementById("buscador")
-
+let buscar = document.getElementById("buscar")
 
 //----------------Mostrar Datos en tabla----------------------------
-fetch("lista_clientes.php")
-  .then((response) => {
-    return response.json();
-  })
-  .then((datos) => {
-    cargarDatos(datos);
+function obtenerLista(){
+    fetch("lista_clientes.php")
+      .then((response) =>  response.json())
+      .then((datos) => {
+        cargarDatos(datos);
 
-    buscador.addEventListener("keypress", (e)=>{
-      // console.log(buscador.value)
-      filtrarBuscador(datos)
-     })
-     
-    obj= datos
-  }); 
- 
+        buscador.addEventListener("click", () => {
+          filtrarBuscador(datos)
+        })
+      });
+} 
 
 function cargarDatos(arrayClientes) {
   let contenedor = document.getElementById("datosClientes");
   contenedor.innerHTML = "";
-
+ 
   arrayClientes.forEach(
     ({
-      numero,
+      id,
       cliente,
       telefono,
       codigo,
@@ -46,7 +41,7 @@ function cargarDatos(arrayClientes) {
       tarjeta.className = "tarjeta";
 
       tarjeta.innerHTML = `
-        <td scope="row">${numero}</td>
+        <td scope="row">${id}</td>
         <td scope="row">${cliente}</td>
         <td scope="row">${telefono}</td>
         <td scope="row">${codigo}</td>
@@ -59,12 +54,12 @@ function cargarDatos(arrayClientes) {
         <td scope="row">${imei}</td>
         <td scope="row">${estado}</td>
         <td>
-          <a class="btn btn-primary" onclick="editarModal(${numero})" value="${numero}">
+          <a class="btn btn-primary" onclick="editarModal(${id})" value="${id}">
             <i class="fa fa-edit"></i>
           </a>
         </td>
         <td>
-          <button  class="btn btn-danger" id="borrar"  onclick="borrarCliente(event)" data-id="${numero}">
+          <button  class="btn btn-danger" id="borrar"  onclick="borrarCliente(event)" data-id="${id}">
             <i class="fa fa-trash"></i>
           </button>
         </td>
@@ -75,34 +70,30 @@ function cargarDatos(arrayClientes) {
   );
 }
 
-//boton buscar
-let buscar= document.getElementById("buscar")
-buscar.addEventListener("click", () => {
-  filtrarBuscador(obj)
-})
-
-
-function filtrarBuscador(clientes){
-  let arrayFiltrado= clientes.filter(({cliente}) => 
-    cliente.includes(buscador.value.toLowerCase()))//cambiar por toUpperCase
-    cargarDatos(arrayFiltrado)
+function filtrarBuscador(datos) {
+  let arrayFiltrado = datos.filter(({ cliente }) =>
+    cliente.includes(buscador.value.toUpperCase())
+  );
+  console.log(buscador.value);
+  cargarDatos(arrayFiltrado);
 }
 
-function obtenerLista() {
-  fetch("lista_clientes.php")
-    .then((response) => response.json())
-    .then((datos) => {
-      cargarDatos(datos);
+fetch("lista_clientes.php")
+  .then((response) => response.json())
+  .then((datos) => {
+    buscador.addEventListener("input", () => {
+      filtrarBuscador(datos);
     });
-}
+  });
 
+ 
 //----------------Actualizar Datos----------------------------
 
 btn_actualizar.addEventListener("click", function(e){
     e.preventDefault(); // Evitar el envío del formulario
 
     // Obtención de datos
-    const numero = document.getElementById("numero").value;
+    const id = document.getElementById("id").value;
     const cliente = document.getElementById("cliente").value;
     const telefono = document.getElementById("telefono").value;
     const codigo = document.getElementById("codigo").value;
@@ -122,10 +113,10 @@ btn_actualizar.addEventListener("click", function(e){
       return;
     }
 
-    fetch(`editar_cliente.php?id=${numero}&opcion=modificar`, {
+    fetch(`editar_cliente.php?id=${id}&opcion=modificar`, {
       method: "POST",
       body: JSON.stringify({
-        numero,
+        id,
         cliente,
         telefono,
         codigo,
@@ -158,15 +149,15 @@ btn_actualizar.addEventListener("click", function(e){
   });
 
 //traer los datos al modal editar
-function editarModal(numero) {
+function editarModal(id) {
   // Abrir modal
   $("#modal-editar").modal("show");
   // Obtener datos del elemento
-  fetch(`editar_cliente.php?id=${numero}`)
+  fetch(`editar_cliente.php?id=${id}`)
   .then((response) => response.json())
   .then((elemento) => {
     // Rellenar el formulario
-    document.getElementById("numero").value = elemento[0].numero;
+    document.getElementById("id").value = elemento[0].id;
     document.getElementById("cliente").value = elemento[0].cliente;
     document.getElementById("telefono").value = elemento[0].telefono;
     document.getElementById("codigo").value = elemento[0].codigo;
@@ -196,7 +187,7 @@ function lanzarAlerta(title, text, icon){
 function borrarCliente(event) {
   const button = event.target;
   // Obtener el ID del cliente del atributo "data-id" del botón
-  const numero = button.getAttribute("data-id");
+  const id = button.getAttribute("data-id");
 
   // Confirmar la eliminación con el usuario
   //if (confirm("¿Estás seguro de que deseas eliminar este cliente?")) {
@@ -219,7 +210,7 @@ function borrarCliente(event) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ numero: numero })
+      body: JSON.stringify({ id: id })
     })
       .then(response => response.json())
       .then(data => {
@@ -313,28 +304,34 @@ formulario.addEventListener("submit", (event) => {
     });
 });
 
-
-
+ 
 
 //---------------Filtrar estado--------------------------
+let selectEstado = document.getElementById("estado")
 
-let selectEstado = document.getElementById("estado");
-
-selectEstado.addEventListener("change", filtrarEstado);
-
-function filtrarEstado() {
-  let estadoSeleccionado = selectEstado.value;
-  
-  if (estadoSeleccionado !== "") {
-    let arrayFiltrado = obj.filter(ob => ob.estado === estadoSeleccionado);
-    cargarDatos(arrayFiltrado);
-  } else {
-    cargarDatos(obj);
+function filtrarPorEstado(clientes, estadoSeleccionado) {
+  let arrayFiltrado = [];
+  for (let i = 0; i < clientes.length; i++) {
+    if (clientes[i].estado === estadoSeleccionado) {
+      arrayFiltrado.push(clientes[i]);
+    }
   }
+  return arrayFiltrado;
 }
 
+fetch("lista_clientes.php")
+      .then((response) =>  response.json())
+      .then((datos) => {
 
-//-------------Paginacion-----------------
+        // Uso de la función
+      selectEstado.addEventListener("change", () => {
+        let estadoSeleccionado = selectEstado.value;
+        let arrayFiltrado = filtrarPorEstado(datos, estadoSeleccionado);
+        cargarDatos(arrayFiltrado);
+      });
+    });
+
+    //-------------Paginacion-----------------
 function cargarPagina(page, pageSize) {
   const url = `paginacion.php?page=${page}&pageSize=${pageSize}`;
 
@@ -401,6 +398,7 @@ let letras= "abcdefghijklmnopqrstuvwxyz"
 let todo= numeros + letras
 
 function generateRandomNumber() {
+
   let longitud= 6
   let password= ""
   for(let x = 0; x<longitud; x++){
