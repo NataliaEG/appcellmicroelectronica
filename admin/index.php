@@ -23,68 +23,10 @@ require_once "vistas/parte_superior.php";
     <button class="btn btn-primary boton col-4 col-sm-4" data-toggle="modal" data-target="#modal-insertar">
       Agregar <i class="fas fa-user"></i>
     </button>
-
-    <!--Filtro de estado 1-->
-      <!-- <div class="form-check form-check-inline">
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="sin solucion"  value="sin_solucion">
-              SIN SOLUCCION
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="demorado"  value="demorado">
-              DIAGNOSTICADO
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="entregado a cobrar"  value="entregado_a_cobrar">
-              ENTREGADO A COBRAR
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="entregado"  value="entregado">
-              ENTREGADO
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="reparado cerrado"  value="reparado_cerrado">
-              REPARADO CERRADO
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="reparado abierto"  value="reparado_abierto">
-              REPARADO ABIERTO
-          </label>
-          
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="en reparacion"  value="en_reparacion">
-              EN REPARACION
-          </label>
-
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="recibido"  value="recibido">
-              RECIBIDO
-          </label>
-      
-          <label class="form-check-label">
-              <input class="input" type="checkbox" 
-              id="diagnosticado"  value="diagnosticado">
-              DIAGNOSTICADO
-          </label>
-        </div> -->
-    <!--Fin filtro de estado-->
-
+    
     <!--Filtro de estado 2-->
     <div class="col-4 col-sm-4">
-      <select name="estado" id="estado" class="form-select">
+      <select  id="estado" class="form-select" style=" width: 104%;">
         <option value="">SELECCIONAR ESTADO</option>
         <option value="RECIBIDO">RECIBIDO</option>
         <option value="DIAGNOSTICADO">DIAGNOSTICADO</option>
@@ -119,8 +61,9 @@ require_once "vistas/parte_superior.php";
             <table class="table table-bordered table-md text-center"  id="tblClientes">
                 <thead class=" thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Numero ID</th>
                         <th scope="col">Cliente</th>
+                        <th scope="col">Telefono</th>
                         <th scope="col">Codigo</th>
                         <th scope="col">Modelo</th>
                         <th scope="col">Falla</th>
@@ -154,13 +97,18 @@ require_once "vistas/parte_superior.php";
         <div class="modal-body">
          <form id="form-editar">
             <div class="mb-3">
-             <label for="id" class="form-label">ID</label>
+             <label for="id" class="form-label">id</label>
              <input type="text" class="form-control" id="id" name="id">
             </div>
 
             <div class="mb-3">
              <label for="cliente" class="form-label">Cliente</label>
              <input type="text" class="form-control" id="cliente" name="cliente">
+            </div>
+
+            <div class="mb-3">
+             <label for="telefono" class="form-label">Telefono</label>
+             <input type="text" class="form-control" id="telefono" name="telefono">
             </div>
 
             <div class="mb-3">
@@ -189,8 +137,8 @@ require_once "vistas/parte_superior.php";
             </div>
 
             <div class="mb-3">
-             <label for="fecha_salida" class="form-label">Fecha de Salida</label>
-             <input type="date" class="form-control" id="fecha_salida" name="fecha_salida" required>
+             <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
+             <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
             </div>
 
             <div class="mb-3">
@@ -246,6 +194,10 @@ require_once "vistas/parte_superior.php";
             <input type="text" class="form-control"  id="modal-cliente"  required>
           </div>
           <div class="mb-3">
+            <label for="modal-telefono" class="form-label" name="modal-telefono">Telefono</label>
+            <input type="text" class="form-control"  id="modal-telefono"  required>
+          </div>
+          <div class="mb-3">
             <label for="modal-codigo" class="form-label" name="modal-codigo">Código</label>
             <input type="text" class="form-control" id="modal-codigo" disabled>
             <button class="btn btn-primary" onclick="generateRandomNumber()">Generar Codigo</button>
@@ -267,8 +219,8 @@ require_once "vistas/parte_superior.php";
             <input type="date" class="form-control" id="modal-fecha_ingreso" required>
           </div>
           <div class="mb-3">
-            <label for="modal-fecha_salida" class="form-label" name="modal-fecha_salida">Fecha de Salida</label>
-            <input type="date" class="form-control" id="modal-fecha_salida" required>
+            <label for="modal-fecha_entrega" class="form-label" name="modal-fecha_entrega">Fecha de Entrega</label>
+            <input type="date" class="form-control" id="modal-fecha_entrega" required>
           </div>
           <div class="mb-3">
             <label for="modal-precio" class="form-label" name="modal-precio">Precio</label>

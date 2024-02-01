@@ -1,20 +1,21 @@
 <?php
 include("../conexion.php");
 
-$consulta = "SELECT numero, cliente, codigo, modelo, falla, observacion, fecha_ingreso, fecha_entrega, precio, imei, estado FROM trabajos";
+$consulta = "SELECT id, cliente, telefono, codigo, modelo, falla, observacion, fecha_ingreso, fecha_entrega, precio, imei, estado FROM trabajos";
 $resultado = mysqli_query($con, $consulta);
 
 if ($resultado && mysqli_num_rows($resultado) > 0) {
     $response = [];
     while ($fila = mysqli_fetch_assoc($resultado)) {
-        $id = $fila['numero'];
+        $id = $fila['id'];
         $cliente = $fila['cliente'];
+        $telefono = $fila['telefono'];
         $codigo = $fila['codigo'];
         $modelo = $fila['modelo'];
         $falla = $fila['falla'];
         $observacion = $fila['observacion'];
         $fecha_ingreso = $fila['fecha_ingreso'];
-        $fecha_salida = $fila['fecha_entrega'];
+        $fecha_entrega = $fila['fecha_entrega'];
         $precio = $fila['precio'];
         $imei = $fila['imei'];
         $estado = $fila['estado'];
@@ -22,12 +23,13 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
         $response[] = [
             'id' => $id,
             'cliente' => $cliente,
+            'telefono' => $telefono,
             'codigo' => $codigo,
             'modelo' => $modelo,
             'falla' => $falla,
             'observacion' => $observacion,
             'fecha_ingreso' => $fecha_ingreso,
-            'fecha_salida' => $fecha_salida,
+            'fecha_entrega' => $fecha_entrega,
             'precio' => $precio,
             'imei' => $imei,
             'estado' => $estado

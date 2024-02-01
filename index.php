@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION['nombre'])){
-    // En caso contrario redirigimos el visitante a otra página
+    // En caso contrario redirigimos al visitante a otra página
     header('Location: login/login.php');
     die();
 }
@@ -37,7 +37,7 @@ if(isset($_SESSION['nombre'])){
     <div class="navbar">
       <div class="logo">
         <a href="#">
-          <img src="./img/logo-principal.png" width="50px" alt="" srcset="">
+          <img src="./img/logo-principal.png" width="75px" style=" padding:  15px;" alt="" srcset="">
         </a>
       </div>
       <ul class="links">
@@ -48,6 +48,10 @@ if(isset($_SESSION['nombre'])){
 
         <li>
           <a href="#titulo_dispositivo">Ver mi equipo</a>
+        </li>
+
+        <li>
+          <a href="#titulo_servicios">Nosotros</a>
         </li>
 
         <li>
@@ -62,9 +66,11 @@ if(isset($_SESSION['nombre'])){
           <a href="#titulo_contacto">Contacto</a>
         </li>
 
+        
+
         <li>
           <a href="login/login.php" class="action_btn">      
-            Registrarse
+            <i class="fas fa-user"></i>
           </a>
         </li>
       </ul>
@@ -81,6 +87,10 @@ if(isset($_SESSION['nombre'])){
 
         <li>
           <a href="#titulo_dispositivo">Ver mi equipo</a>
+        </li>
+
+        <li>
+          <a href="#titulo_servicios">Nosotros</a>
         </li>
 
         <li>
@@ -113,13 +123,13 @@ if(isset($_SESSION['nombre'])){
 <!--fin Parte principal-->
 <div class="container">
 
-<hr class="sidebar-divider">
-<!-- Inicio Tarjetas de reparacion-->
-<h3 id="titulo_reparacion" class="text-center"><img src="img/destornillador-icono.png" width="30px"> Realizamos la reparacion de equipos:</h3>
 
-<div class="container-card">
+<!-- Inicio Tarjetas de reparacion-->
+<h3 id="titulo_reparacion" class="text-center mt-5 mb-5"><img src="img/destornillador-icono.png" width="30px"> Realizamos la reparacion de equipos:</h3>
+
+<div class="container-card mt-3 mb-3">
   <div class="product">
-    <div class="product-card">
+    <div class="product-card mt-3 mb-3">
       <h2 class="name">Macbook</h2>
       <p class="costo">Contamos con un equipo de expertos en reparación de MacBook que se encargará de solucionar cualquier problema que pueda presentar tu dispositivo, utilizando piezas de repuesto originales y brindando un servicio rápido y eficiente.</p>
       <a href="#" class="popup-btn">Mas Informacion</a>
@@ -148,7 +158,7 @@ if(isset($_SESSION['nombre'])){
   </div>
 
   <div class="product">
-    <div class="product-card">
+    <div class="product-card mt-3 mb-3">
       <h2 class="name">Celulares Iphone</h2>
       <p class="costo">Nuestro equipo de especialistas en reparación de iPhone está preparado para resolver cualquier inconveniente que pueda surgir en tu dispositivo, proporcionando un servicio ágil y confiable con el uso de repuestos genuinos.</p>
       <a href="#" class="popup-btn">Mas Informacion</a>
@@ -178,7 +188,7 @@ if(isset($_SESSION['nombre'])){
   </div>
 
   <div class="product">
-    <div class="product-card">
+    <div class="product-card mt-3 mb-3">
       <h2 class="name">Ipad</h2>
       <p class="costo">Nuestro equipo está capacitado para solucionar cualquier problema, ya sea relacionado con la pantalla, la batería, el software u otros inconvenientes, ofreciendo un servicio confiable y eficiente para que puedas disfrutar nuevamente de tu iPad.</p>
       <a href="#" class="popup-btn">Mas Informacion</a>
@@ -208,7 +218,7 @@ if(isset($_SESSION['nombre'])){
   </div>
 
   <div class="product">
-    <div class="product-card">
+    <div class="product-card mt-3 mb-3">
       <h2 class="name">Apple Watch</h2>
       <p class="costo">En nuestro centro de reparación especializado, nos enfrentamos a cualquier obstáculo que pueda surgir en tu dispositivo. Puedes tener la tranquilidad de que restauraremos tu Apple Watch a su estado óptimo, permitiéndote aprovechar al máximo todas sus funcionalidades.</p>
       <a href="#" class="popup-btn">Mas Informacion</a>
@@ -239,14 +249,13 @@ if(isset($_SESSION['nombre'])){
 </div>
 <!-- Fin Tarjetas de reparacion-->
 
-<hr class="sidebar-divider">
-<!--Inicio cuadros-->
-<h3 id="titulo_servicios" class="text-center mt-4">
-  <img src="img/manos-icono.png" width="30px"> 
-  Te proporcionamos:</h3>   
-  
-  <div id="cuadros" class="mt-3">
 
+<!--Inicio cuadros-->
+<h3 id="titulo_servicios" class="text-center mt-5 mb-5">
+  
+  <img src="img/manos-icono.png" width="30px">Te proporcionamos:</h3>   
+  
+  <div id="cuadros" class="mt-3 mb-3">
       <div id="cuadro_bg" class="col-6 col-sm-12 text-center mt-3">
         <h4><i class="fas fa-paste"></i><strong> Presupuesto</strong></h4>
         <p>Utiliza nuestra herramienta de presupuestos en línea, sin ningún compromiso, para verificar las tarifas de reparación de tu dispositivo y obtener una estimación precisa de los costos antes de tomar cualquier decisión.</p>
@@ -272,91 +281,128 @@ if(isset($_SESSION['nombre'])){
 
 
 <!--Inicio Sobre Nosotros-->
-<hr class="sidebar-divider">
-<h3 id="titulo_servicios" class="text-center mt-4"><i class="fas fa-user"></i> Sobre Nosotros</h3>
-      
-<div id="titulo_nosotros" class="col-12"> 
-      <div class="container-nosotros mt-4">
-        <div class="row-nosotros col-6" id="texto_imagen">
-          <div id="quienes_somos_texto" >
-                  <h3  class="text-seccion">Nosotros</h3> 
-                    <p>Somos especialista en reparación y servicio <br>
-                      técnico de dispositivos Apple en Argentina. <br>
-                      Contamos con un laboratorio propio de <br>
-                      microelectrónica, ademas de capacitación permanente y<br>
-                      personal calificado. Trabajamos con los mejores <br>
-                      repuestos homologados, con amplio stock y las <br>
-                      mejores herramientas en constante actualización. <br> 
-                      Si buscas una solucion seria y confiable, te <br>
-                      esperamos. Solicita tu presupuesto y pone tu <br>
-                      dispositivos en manos de verdaderos <br>
-                      profesionales. <br>
-                    </p>
-          </div>
-        </div>
-          <div class="col-6">
-            <img src="img/appcell-2.jpg" class="img-nosotros" id="imagen_appcell" >
-          </div>
+<h3 id="titulo_servicios" class="text-center mt-5 mb-5"><i class="fas fa-user"></i> Sobre Nosotros</h3>
 
-        
+<div class="contenedor mt-3 mb-3">
+  <div class="text">
+    <h3  class="text-seccion">Nosotros</h3> 
+    <p>Somos especialista en reparación y servicio <br>
+      técnico de dispositivos Apple en Argentina. <br>
+      Contamos con un laboratorio propio de <br>
+      microelectrónica, ademas de capacitación permanente y<br>
+      personal calificado. Trabajamos con los mejores <br>
+      repuestos homologados, con amplio stock y las <br>
+      mejores herramientas en constante actualización. <br> 
+      Si buscas una solucion seria y confiable, te <br>
+      esperamos. Solicita tu presupuesto y pone tu <br>
+      dispositivos en manos de verdaderos <br>
+      profesionales. <br>
   </div>
+    <img src="img/appcell-2.jpg" class="imagen" id="imagen_appcell" >
+  </p>
 </div>
-<!--Fin Sobre Nosotros-->
+<!-- Fin sobre nosotros -->
       
 
-<hr class="sidebar-divider">
+
 <!--inicio carrousel-->
-  <h3 id="titulo_trabajos" class="  text-center text-center mt-5 mb-4">
+<h3 id="titulo_trabajos" class="text-center text-center mt-5 mb-5">
+  
   <img src="img/destornillador-icono.png" width="30px">
     Trabajos Realizados
   </h3>
 
-  <div class="container-slider">
-    <div class="slides">
-      <div class="slide">
-        <img class="img" src="img/appcell-2.jpg" alt="imagen 1" loading="lazy">
-        <div class="slide-content">
+<div class="carrusel-list mt-3 mb-3" id="carrusel-list1">
+  <!-- Botón previo -->
+  <button class="carrusel-arrow carrusel-prev" id="button-prev" data-button="button-prev" onclick="(event,1)">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left"
+        class="svg-inline--fa fa-chevron-left fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512">
+        <path fill="currentColor"
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z">
+        </path>
+    </svg>
+  </button>
+
+  <!-- Contenedor del carrusel -->
+  <div class="carrusel-track" id="track1">
+      <div class="carrusel2">
+        <div>
+          <a href="#">
+            <div class="card">
+              <img src="img/slider-img1.JPG">
+            </div>
+          </a>
         </div>
       </div>
 
-      <div class="slide">
-        <img class="img" src="img/slider-img1.jpg" alt="imagen 1" loading="lazy">
+      <div class="carrusel2">
+        <div>
+          <a href="#">
+            <div class="card text-center">
+              <img src="img/slider-img2.JPG">
+            </div>
+          </a>
+        </div>
       </div>
 
-      <div class="slide">
-        <img class="img" src="img/slider-img6.jpg" alt="imagen 1" loading="lazy">
+      <div class="carrusel2">
+        <div>
+          <a href="#">
+            <div class="card text-center">
+              <img src="img/slider-img3.JPG">
+            </div>
+          </a>
+        </div>
       </div>
 
-      <div class="slide">
-        <img class="img" src="img/slider-img7.jpg" alt="imagen 1" loading="lazy">
+      <div class="carrusel2">
+        <div>
+          <a href="#">
+            <div class="card text-center">
+              <img src="img/slider-img4.JPG">
+            </div>
+          </a>
+        </div>
       </div>
 
-      <div class="slide">
-        <img class="img" src="img/slider-img8.jpg" alt="imagen 1" loading="lazy">
+      <div class="carrusel2">
+        <div>
+          <a href="#">
+            <div class="card text-center">  
+              <img src="img/slider-img5.JPG">
+            </div>
+          </a>
+        </div>
       </div>
 
-      <div class="slide">
-        <img class="img" src="img/slider-img5.jpg" alt="imagen 1" loading="lazy">
+      <div class="carrusel2">
+        <div>
+          <a href="#">
+            <div class="card text-center">   
+              <img src="img/slider-img6.JPG">
+            </div>
+          </a>
+        </div>
       </div>
-    </div>
-
-    <div class="slide-controls">
-      <button id="prev-btn">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-
-      <button id="next-btn">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
-
   </div>
+
+  <!-- Botón siguiente -->
+  <button class="carrusel-arrow carrusel-next" id="button-next" data-button="button-next" onclick="(event, 1)">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
+        class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512">
+        <path fill="currentColor"
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+        </path>
+    </svg>
+  </button>
+</div>
 <!--Fin carrousel-->
 
 
 <!--inicio form-contacto-->
-  <hr class="sidebar-divider">
-  <h3 id="titulo_contacto" class="text-center mt-5 mb-2">
+  <h3 id="titulo_contacto" class="text-center mt-5 mb-5">
     <img src="img/hoja-icono.png" width="30px"> 
     Formulario de Contacto
   </h3>
@@ -409,7 +455,6 @@ if(isset($_SESSION['nombre'])){
 <!--Fin form-contacto-->
 
 <!--Inicio Formulario consulta-->
-  <hr class="sidebar-divider">
       <h3 id="titulo_dispositivo" class="text-center mt-5 mb-5"><img src="img/hojo-icono.png" width="30px"> Ver estado de mi equipo</h3>
       <div class="container formconsulta">
           <h4>Verificación de código de consulta</h4>
@@ -446,23 +491,24 @@ if(isset($_SESSION['nombre'])){
 <!--Fin Formulario consulta-->
 
 
-<hr class="sidebar-divider">
-<!-- Inicio carrousel Instagram-->
-<h3 id="titulo_instagram" class="text-center mt-4 mb-5"><img src="img/instagram-icono-blanco.png" width="30px" alt="" srcset=""> Publicaciones De Instagram:</h3>
-<div class="carrusel-list" id="carrusel-list">
-    <button class="carrusel-arrow carrusel-prev" id="button-prev" data-button="button-prev"
-      onclick="app.processingButton()">
-      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left"
-          class="svg-inline--fa fa-chevron-left fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 320 512">
-          <path fill="currentColor"
-              d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z">
-          </path>
-      </svg>
-    </button>
 
-    <div class="carrusel-track" id="track">
-      
+<!-- Inicio carrousel Instagram-->
+<h3 id="titulo_instagram" class="text-center mt-5 mb-5"><img src="img/instagram-icono-blanco.png" width="30px" alt="" srcset=""> Publicaciones De Instagram:</h3>
+
+<div class="carrusel-list mt-3 mb-3" id="carrusel-list2">
+  <!-- Botón previo -->
+  <button class="carrusel-arrow carrusel-prev" id="button-prev" data-button="button-prev" onclick="(event, 2)">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left"
+        class="svg-inline--fa fa-chevron-left fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512">
+        <path fill="currentColor"
+            d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z">
+        </path>
+    </svg>
+  </button>
+
+  <!-- Contenedor del carrusel -->
+  <div class="carrusel-track" id="track2">
       <div class="carrusel2">
         <div>
           <a href="#">
@@ -522,56 +568,20 @@ if(isset($_SESSION['nombre'])){
           </a>
         </div>
       </div>
-
-      <div class="carrusel2">
-        <div>
-          <a href="#">
-            <div class="card text-center">
-              <iframe id="sds" width="270" height="440" src="https://www.instagram.com/p/B_Vv3oepUMS/embed" frameborder="0" scrolling="no"></iframe>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="carrusel2">
-        <div>
-          <a href="#">
-            <div class="card text-center">
-              <iframe id="sds" width="270" height="440" src="https://www.instagram.com/p/CFvA23pBDlg/embed" frameborder="0" scrolling="no"></iframe>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="carrusel2">
-        <div>
-          <a href="#">
-            <div class="card text-center">
-              <iframe id="sds" width="270" height="440" src="https://www.instagram.com/p/CABtRFyJYlT/embed" frameborder="0" scrolling="no"></iframe>
-            </div>
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-      <button class="carrusel-arrow carrusel-next" id="button-next" data-button="button-next"
-        onclick="app.processingButton(event)">
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
-            class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 320 512">
-            <path fill="currentColor"
-                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
-            </path>
-        </svg>
-      </button>
-  
-
   </div>
 
+  <!-- Botón siguiente -->
+  <button class="carrusel-arrow carrusel-next" id="button-next" data-button="button-next" onclick="(event, 2)">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
+        class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 320 512">
+        <path fill="currentColor"
+            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+        </path>
+    </svg>
+  </button>
 </div>
-    
-<!-- Fin Instagram-->
+
 </div>
 </div>
 <!--Inicio Footer--> 
@@ -587,7 +597,7 @@ if(isset($_SESSION['nombre'])){
     <li class="menu-item">Servicios</li>
     <li class="menu-item">Trabajos</li> -->
   </ul>
-  <span>Copyright &copy;  Appcel 2023</span>
+  <span>Copyright &copy;  Appcel 2024</span>
 </footer>
 <!--Fin Footer--> 
 
@@ -602,5 +612,3 @@ if(isset($_SESSION['nombre'])){
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>
-
-

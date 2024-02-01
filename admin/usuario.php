@@ -7,7 +7,7 @@ switch ($method) {
     case 'GET':
         if (!isset($_GET['id'])) {
             // Obtener todos los registros
-            $result = $con->query("SELECT * FROM clientes");
+            $result = $con->query("SELECT * FROM trabajos");
 
             // Crear un array para almacenar los registros
             $elementos = array();
@@ -21,8 +21,9 @@ switch ($method) {
             echo json_encode($elementos);
         } else {
             // Obtener un registro en particular
+            //id es el id
             $id = intval($_GET['id']);
-            $result = $con->query("SELECT * FROM clientes WHERE id=$id");
+            $result = $con->query("SELECT * FROM trabajos WHERE id=$id");
 
             // Crear un array para almacenar el registro
             $elementos = array();
@@ -43,20 +44,21 @@ switch ($method) {
 
         $id = $input["id"];
         $cliente = $input["cliente"];
+        $telefono = $input["telefono"];
         $codigo = $input["codigo"];
         $modelo = $input["modelo"];
         $falla = $input["falla"];
         $observacion = $input["observacion"];
         $fecha_ingreso = $input["fecha_ingreso"];
-        $fecha_salida = $input["fecha_salida"];
+        $fecha_entrega = $input["fecha_entrega"];
         $precio = $input["precio"];
         $imei = $input["imei"];
         $estado = $input["estado"];
 
         // Actualizar registros
-        $sql = "UPDATE clientes SET cliente=?, codigo=?, modelo=?, falla=?, observacion=?, fecha_ingreso=?, fecha_salida=?, precio=?, imei=?, estado=? WHERE id=?";
+        $sql = "UPDATE trabajos SET cliente=?, telefono=?, codigo=?, modelo=?, falla=?, observacion=?, fecha_ingreso=?, fecha_entrega=?, precio=?, imei=?, estado=? WHERE id=?";
         $query = $con->prepare($sql);
-        $query->bind_param("ssssssssssi", $cliente, $codigo, $modelo, $falla, $observacion, $fecha_ingreso, $fecha_salida, $precio, $imei, $estado, $id);
+        $query->bind_param("sssssssssssi", $cliente, $telefono, $codigo, $modelo, $falla, $observacion, $fecha_ingreso, $fecha_entrega, $precio, $imei, $estado, $id);
         $query->execute();
 
         // Devolver un código de estado de éxito

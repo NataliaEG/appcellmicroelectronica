@@ -1,42 +1,38 @@
 //Enviar los datos del modal editar
-const btn_actualizar= document.getElementById("actualizar")
-
+const btn_actualizar= document.getElementById("actualizar");
 const formulario = document.getElementById("form_agregar");
-
+let obj        
 let buscador= document.getElementById("buscador")
-
+let buscar = document.getElementById("buscar")
 
 //----------------Mostrar Datos en tabla----------------------------
-fetch("lista_clientes.php")
-  .then((response) => {
-    return response.json();
-  })
-  .then((datos) => {
-    cargarDatos(datos);
+function obtenerLista(){
+    fetch("lista_clientes.php")
+      .then((response) =>  response.json())
+      .then((datos) => {
+        cargarDatos(datos);
 
-    buscador.addEventListener("keypress", (e)=>{
-      // console.log(buscador.value)
-      filtrarBuscador(datos)
-     })
-     
-    obj= datos
-  }); 
- 
+        buscador.addEventListener("click", () => {
+          filtrarBuscador(datos)
+        })
+      });
+} 
 
 function cargarDatos(arrayClientes) {
   let contenedor = document.getElementById("datosClientes");
   contenedor.innerHTML = "";
-
+ 
   arrayClientes.forEach(
     ({
       id,
       cliente,
+      telefono,
       codigo,
       modelo,
       falla,
       observacion,
       fecha_ingreso,
-      fecha_salida,
+      fecha_entrega,
       precio,
       imei,
       estado,
@@ -47,17 +43,18 @@ function cargarDatos(arrayClientes) {
       tarjeta.innerHTML = `
         <td scope="row">${id}</td>
         <td scope="row">${cliente}</td>
+        <td scope="row">${telefono}</td>
         <td scope="row">${codigo}</td>
         <td scope="row">${modelo}</td>
         <td scope="row">${falla}</td>
         <td scope="row">${observacion}</td>
         <td scope="row">${fecha_ingreso}</td>
-        <td scope="row">${fecha_salida}</td>
+        <td scope="row">${fecha_entrega}</td>
         <td scope="row">${precio}</td>
         <td scope="row">${imei}</td>
         <td scope="row">${estado}</td>
         <td>
-          <a class="btn btn-primary" id="actualizar" onclick="editarModal(${id})" value="${id}">
+          <a class="btn btn-primary" onclick="editarModal(${id})" value="${id}">
             <i class="fa fa-edit"></i>
           </a>
         </td>
@@ -73,27 +70,23 @@ function cargarDatos(arrayClientes) {
   );
 }
 
-//boton buscar
-let buscar= document.getElementById("buscar")
-buscar.addEventListener("click", () => {
-  filtrarBuscador(obj)
-})
-
-
-function filtrarBuscador(clientes){
-  let arrayFiltrado= clientes.filter(({cliente}) => 
-    cliente.includes(buscador.value.toLowerCase()))//cambiar por toUpperCase
-    cargarDatos(arrayFiltrado)
+function filtrarBuscador(datos) {
+  let arrayFiltrado = datos.filter(({ cliente }) =>
+    cliente.includes(buscador.value.toUpperCase())
+  );
+  console.log(buscador.value);
+  cargarDatos(arrayFiltrado);
 }
 
-function obtenerLista() {
-  fetch("lista_clientes.php")
-    .then((response) => response.json())
-    .then((datos) => {
-      cargarDatos(datos);
+fetch("lista_clientes.php")
+  .then((response) => response.json())
+  .then((datos) => {
+    buscador.addEventListener("input", () => {
+      filtrarBuscador(datos);
     });
-}
+  });
 
+ 
 //----------------Actualizar Datos----------------------------
 
 btn_actualizar.addEventListener("click", function(e){
@@ -102,12 +95,13 @@ btn_actualizar.addEventListener("click", function(e){
     // Obtención de datos
     const id = document.getElementById("id").value;
     const cliente = document.getElementById("cliente").value;
+    const telefono = document.getElementById("telefono").value;
     const codigo = document.getElementById("codigo").value;
     const modelo = document.getElementById("modelo").value;
     const falla = document.getElementById("falla").value;
     const observacion = document.getElementById("observacion").value;
     const fecha_ingreso = document.getElementById("fecha_ingreso").value;
-    const fecha_salida = document.getElementById("fecha_salida").value;
+    const fecha_entrega = document.getElementById("fecha_entrega").value;
     const precio = document.getElementById("precio").value;
     const imei = document.getElementById("imei").value;
     const estado = document.getElementById("estado").value;
@@ -124,12 +118,13 @@ btn_actualizar.addEventListener("click", function(e){
       body: JSON.stringify({
         id,
         cliente,
+        telefono,
         codigo,
         modelo,
         falla,
         observacion,
         fecha_ingreso,
-        fecha_salida,
+        fecha_entrega,
         precio,
         imei,
         estado,
@@ -159,21 +154,22 @@ function editarModal(id) {
   $("#modal-editar").modal("show");
   // Obtener datos del elemento
   fetch(`editar_cliente.php?id=${id}`)
-    .then((response) => response.json())
-    .then((elemento) => {
-      // Rellenar el formulario
-      document.getElementById("id").value = elemento[0].id;
-      document.getElementById("cliente").value = elemento[0].cliente;
-      document.getElementById("codigo").value = elemento[0].codigo;
-      document.getElementById("modelo").value = elemento[0].modelo;
-      document.getElementById("falla").value = elemento[0].falla;
-      document.getElementById("observacion").value = elemento[0].observacion;
-      document.getElementById("fecha_ingreso").value = elemento[0].fecha_ingreso;
-      document.getElementById("fecha_salida").value = elemento[0].fecha_salida;
-      document.getElementById("precio").value = elemento[0].precio;
-      document.getElementById("imei").value = elemento[0].imei;
-      document.getElementById("estado").value = elemento[0].estado;
-    });
+  .then((response) => response.json())
+  .then((elemento) => {
+    // Rellenar el formulario
+    document.getElementById("id").value = elemento[0].id;
+    document.getElementById("cliente").value = elemento[0].cliente;
+    document.getElementById("telefono").value = elemento[0].telefono;
+    document.getElementById("codigo").value = elemento[0].codigo;
+    document.getElementById("modelo").value = elemento[0].modelo;
+    document.getElementById("falla").value = elemento[0].falla;
+    document.getElementById("observacion").value = elemento[0].observacion;
+    document.getElementById("fecha_ingreso").value = elemento[0].fecha_ingreso;
+    document.getElementById("fecha_entrega").value = elemento[0].fecha_entrega;
+    document.getElementById("precio").value = elemento[0].precio;
+    document.getElementById("imei").value = elemento[0].imei;
+    document.getElementById("estado").value = elemento[0].estado;
+  });
 }
 
 //----------------Mostrar alerta----------------------------
@@ -250,23 +246,25 @@ formulario.addEventListener("submit", (event) => {
   const formData = new FormData(document.getElementById('form_agregar'))
   // Obtener los datos del formulario
   const cliente = document.getElementById("modal-cliente").value;
+  const telefono = document.getElementById("modal-telefono").value;
   const codigo = document.getElementById("modal-codigo").value;
   const modelo = document.getElementById("modal-modelo").value;
   const falla = document.getElementById("modal-falla").value;
   const observacion = document.getElementById("modal-observacion").value;
   const fecha_ingreso = document.getElementById("modal-fecha_ingreso").value;
-  const fecha_salida = document.getElementById("modal-fecha_salida").value;
+  const fecha_entrega = document.getElementById("modal-fecha_entrega").value;
   const precio = document.getElementById("modal-precio").value;
   const imei = document.getElementById("modal-imei").value;
   const estado = document.getElementById("modal-estado").value
   // Agregar los datos al objeto FormData
   formData.append('modal-cliente', cliente);
+  formData.append('modal-telefono', telefono);
   formData.append('modal-codigo', codigo);
   formData.append('modal-modelo', modelo);
   formData.append('modal-falla', falla);
   formData.append('modal-observacion', observacion);
   formData.append('modal-fecha_ingreso', fecha_ingreso);
-  formData.append('modal-fecha_salida', fecha_salida);
+  formData.append('modal-fecha_entrega', fecha_entrega);
   formData.append('modal-precio', precio);
   formData.append('modal-imei', imei);
   formData.append('modal-estado', estado)
@@ -306,94 +304,102 @@ formulario.addEventListener("submit", (event) => {
     });
 });
 
-
-
+ 
 
 //---------------Filtrar estado--------------------------
-// let inputOption= document.getElementsByClassName("input")
+let selectEstado = document.getElementById("estado")
 
-// for(const input of inputOption){
-//   input.addEventListener("click", filtrarPorEstado)
-// }
-
-// function filtrarPorEstado(e){
-//   let estados= []
-//   for(const input of inputOption){
-//     if(input.checked){
-//       estados.push(input.id)
-//     }
-//   }
-//   let arrayFiltrado= obj.filter(ob => estados.includes(ob.estado))
-//   cargarDatos(arrayFiltrado.length > 0 ? arrayFiltrado : obj)
-// }
-
-
-let selectEstado = document.getElementById("estado");
-
-selectEstado.addEventListener("change", filtrarEstado);
-
-function filtrarEstado() {
-  let estadoSeleccionado = selectEstado.value;
-  
-  if (estadoSeleccionado !== "") {
-    let arrayFiltrado = obj.filter(ob => ob.estado === estadoSeleccionado);
-    cargarDatos(arrayFiltrado);
-  } else {
-    cargarDatos(obj);
+function filtrarPorEstado(clientes, estadoSeleccionado) {
+  let arrayFiltrado = [];
+  for (let i = 0; i < clientes.length; i++) {
+    if (clientes[i].estado === estadoSeleccionado) {
+      arrayFiltrado.push(clientes[i]);
+    }
   }
+  return arrayFiltrado;
 }
 
+fetch("lista_clientes.php")
+      .then((response) =>  response.json())
+      .then((datos) => {
 
-//-------------Paginacion-----------------
+        // Uso de la función
+      selectEstado.addEventListener("change", () => {
+        let estadoSeleccionado = selectEstado.value;
+        let arrayFiltrado = filtrarPorEstado(datos, estadoSeleccionado);
+        cargarDatos(arrayFiltrado);
+      });
+    });
 
-// Ejemplo de uso
+    //-------------Paginacion-----------------
+function cargarPagina(page, pageSize) {
+  const url = `paginacion.php?page=${page}&pageSize=${pageSize}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      // En este punto, 'data' contiene los datos de la página solicitada
+      // Aquí debes actualizar la tabla con los nuevos datos recibidos
+      cargarDatos(data.data);
+
+      // Luego, actualizamos los controles de paginación con los datos recibidos
+      actualizarControlesPaginacion(page, pageSize, data.total);
+    })
+    .catch(error => {
+      // Manejo de errores si la solicitud falla
+      console.error('Error al cargar la página:', error);
+    });
+}
+
+// Llamada inicial para cargar la primera página
+cargarPagina(1, 5); // Puedes ajustar los valores de página y pageSize según tus necesidades
+
 // Función para actualizar los controles de paginación
 function actualizarControlesPaginacion(page, pageSize, total) {
-    const anteriorElement = document.getElementById('anterior');
-    const siguienteElement = document.getElementById('siguiente');
-    const numPaginaElement = document.getElementById('numPagina');
-  
-    // Actualizar el número de página actual y el total de páginas
-    numPaginaElement.textContent = `Página ${page} de ${Math.ceil(total / pageSize)}`;
-  
-    // Habilitar o deshabilitar el enlace de página anterior según corresponda
-    if (page === 1) {
-      anteriorElement.classList.add('disabled');
-    } else {
-      anteriorElement.classList.remove('disabled');
-    }
-  
-    // Habilitar o deshabilitar el enlace de página siguiente según corresponda
-    if (page === Math.ceil(total / pageSize)) {
-      siguienteElement.classList.add('disabled');
-    } else {
-      siguienteElement.classList.remove('disabled');
-    }
-  
-    // Asignar los manejadores de eventos a los enlaces de página anterior y siguiente
-    anteriorElement.addEventListener('click', () => {
-      if (page > 1) {
-        cargarPagina(page - 1, pageSize);
-      }
-    });
-  
-    siguienteElement.addEventListener('click', () => {
-      if (page < Math.ceil(total / pageSize)) {
-        cargarPagina(page + 1, pageSize);
-      }
-    });
-  }
-  
+  const anteriorElement = document.getElementById('anterior');
+  const siguienteElement = document.getElementById('siguiente');
+  const numPaginaElement = document.getElementById('numPagina');
 
+  // Actualizar el número de página actual y el total de páginas
+  numPaginaElement.textContent = `Página ${page} de ${Math.ceil(total / pageSize)}`;
+
+  // Habilitar o deshabilitar el enlace de página anterior según corresponda
+  if (page === 1) {
+    anteriorElement.classList.add('disabled');
+  } else {
+    anteriorElement.classList.remove('disabled');
+  }
+
+  // Habilitar o deshabilitar el enlace de página siguiente según corresponda
+  if (page === Math.ceil(total / pageSize)) {
+    siguienteElement.classList.add('disabled');
+  } else {
+    siguienteElement.classList.remove('disabled');
+  }
+
+  // Asignar los manejadores de eventos a los enlaces de página anterior y siguiente
+  anteriorElement.addEventListener('click', () => {
+    if (page > 1) {
+      cargarPagina(page - 1, pageSize);
+    }
+  });
+
+  siguienteElement.addEventListener('click', () => {
+    if (page < Math.ceil(total / pageSize)) {
+      cargarPagina(page + 1, pageSize);
+    }
+  });
+}
 //-------------Fin Paginacion-----------------
 
 //-------------Inicio generado de codigo-----------------
 let numeros= "0123456789"
-let letras= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+let letras= "abcdefghijklmnopqrstuvwxyz"
 let todo= numeros + letras
 
 function generateRandomNumber() {
-  let longitud= 15
+
+  let longitud= 6
   let password= ""
   for(let x = 0; x<longitud; x++){
     let aleatorio= Math.floor(Math.random() * todo.length)

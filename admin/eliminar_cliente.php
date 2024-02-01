@@ -11,7 +11,7 @@ $response = [
 ];
 
 if ($idCliente) {
-  $sql = "DELETE FROM clientes WHERE id = $idCliente";
+  $sql = "DELETE FROM trabajos WHERE id = $idCliente";
 
   if (mysqli_query($con, $sql)) {
     $response = [

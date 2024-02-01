@@ -1,73 +1,71 @@
-<?php
-include("../conexion.php");
 
-$method = $_SERVER["REQUEST_METHOD"];
 
-switch ($method) {
-    case 'GET':
-        if (!isset($_GET['id'])) {
-            // Obtener todos los registros
-            $result = $con->query("SELECT * FROM clientes");
 
-            // Crear un array para almacenar los registros
-            $elementos = array();
+</div>
+            <!-- End of Main Content -->
 
-            // Iterar sobre cada fila de resultados y almacenar los campos en el array
-            while ($row = $result->fetch_assoc()) {
-                $elementos[] = $row;
-            }
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy;  Appcel 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 
-            // Devolver los campos en formato JSON
-            echo json_encode($elementos);
-        } else {
-            // Obtener un registro en particular
-            $id = intval($_GET['id']);
-            $result = $con->query("SELECT * FROM clientes WHERE id=$id");
+        </div>
+        <!-- End of Content Wrapper -->
 
-            // Crear un array para almacenar el registro
-            $elementos = array();
+    </div>
+    <!-- End of Page Wrapper -->
 
-            // Iterar sobre cada fila de resultados y almacenar los campos en el array
-            while ($row = $result->fetch_assoc()) {
-                $elementos[] = $row;
-            }
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-            // Devolver los campos en formato JSON
-            echo json_encode($elementos);
-        }
-        break;
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
 
-    case 'POST':
-        // Leer el cuerpo de la solicitud y decodificarlo como JSON
-        $input = json_decode(file_get_contents('php://input'), true);
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        $id = $input["id"];
-        $cliente = $input["cliente"];
-        $codigo = $input["codigo"];
-        $modelo = $input["modelo"];
-        $falla = $input["falla"];
-        $observacion = $input["observacion"];
-        $fecha_ingreso = $input["fecha_ingreso"];
-        $fecha_salida = $input["fecha_salida"];
-        $precio = $input["precio"];
-        $imei = $input["imei"];
-        $estado = $input["estado"];
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        // Actualizar registros
-        $sql = "UPDATE clientes SET cliente=?, codigo=?, modelo=?, falla=?, observacion=?, fecha_ingreso=?, fecha_salida=?, precio=?, imei=?, estado=? WHERE id=?";
-        $query = $con->prepare($sql);
-        $query->bind_param("ssssssssssi", $cliente, $codigo, $modelo, $falla, $observacion, $fecha_ingreso, $fecha_salida, $precio, $imei, $estado, $id);
-        $query->execute();
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-        // Devolver un código de estado de éxito
-        $data = array("estado" => true);
-        echo json_encode($data);
-        break;
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
 
-    default:
-        // Manejar otros métodos HTTP si es necesario
-        break;
-}
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
 
-mysqli_close($con);
-?>
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>
