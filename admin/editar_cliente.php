@@ -41,20 +41,21 @@ switch ($method) {
         // Leer el cuerpo de la solicitud y decodificarlo como JSON
         $input = json_decode(file_get_contents('php://input'), true);
 
-        $id = $input['id'];
-        $cliente = $input['cliente'];
-        $telefono = $input['telefono'];
-        $codigo = $input['codigo'];
-        $modelo = $input['modelo'];
-        $falla = $input['falla'];
-        $observacion = $input['observacion'];
+        $id =            $input['id'];
+        $cliente =       $input['cliente'];
+        $telefono =      $input['telefono'];
+        $codigo =        $input['codigo'];
+        $modelo =        $input['modelo'];
+        $falla =         $input['falla'];
+        $observacion =   $input['observacion'];
         $fecha_ingreso = $input['fecha_ingreso'];
         $fecha_entrega = $input['fecha_entrega'];
-        $precio = $input['precio'];
-        $imei = $input['imei'];
-        $estado = $input['estado'];
+        $precio =        $input['precio'];
+        $imei =          $input['imei'];
+        $estado =        $input['estado'];
 
         // Actualizar registros
+        error_log('Estado recibido: ' . $estado);
         $sql = "UPDATE trabajos SET cliente=?, telefono=?, codigo=?, modelo=?, falla=?, observacion=?, fecha_ingreso=?, fecha_entrega=?, precio=?, imei=?, estado=? WHERE id=?";
         $query = $con->prepare($sql);
         $query->bind_param("sssssssssssi", $cliente, $telefono, $codigo, $modelo, $falla, $observacion, $fecha_ingreso, $fecha_entrega, $precio, $imei, $estado, $id);

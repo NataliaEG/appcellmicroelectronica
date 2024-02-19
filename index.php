@@ -420,7 +420,7 @@ if(isset($_SESSION['nombre'])){
       </div>
     </div>
     
-    <form id="contact-form" method="POST" class="form-cons">
+    <form id="contact-form" class="form-cons" action="https://formsubmit.co/nicolasgomez8010@gmail.com" method="POST">
       <div class="input-box">
           <input type="text" id="nombre" name="nombre" class="form-input"  placeholder="Escriba su nombre">
           <!-- <input type="text" required placeholder="Nombre y apellido"> -->
@@ -450,6 +450,10 @@ if(isset($_SESSION['nombre'])){
       </div>
 
       <button type="submit" name="submit" value="enviar">Enviar</button>
+      <input type="hidden" name="_next" value="index.php">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_autoresponse" value="Mensaje enviado">
+
     </form>
   </div>
 <!--Fin form-contacto-->

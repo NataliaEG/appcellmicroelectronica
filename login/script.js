@@ -3,11 +3,11 @@ const loginForm= document.getElementById('formulario');
 loginForm.addEventListener('submit', (e)=>{
     e.preventDefault();
 
-    const email=document.getElementById('email').value;
+    const nombre=document.getElementById('nombre').value;
     const password= document.getElementById('password').value;
 
     const formData= new FormData();
-    formData.append('email', email);
+    formData.append('nombre', nombre);
     formData.append('password', password);
 
     fetch('login.php', {
@@ -30,37 +30,3 @@ loginForm.addEventListener('submit', (e)=>{
 });
 
 
-
-
-
-
-// let usuario= document.getElementById("email")
-// let contrasenia= document.getElementById("contrasenia")
-// let botonSubmit= document.getElementById("formulario")
-
-// function data(){
-//   let datos= new FormData(this)
-//   datos.append("usuario", usuario.value)
-//   datos.append("contrasenia", contrasenia.value)
-//   fetch("login.php", {
-//         method: "POST",
-//         body: datos
-//     }).then(Response => Response.json())
-//     .then(({success}) => {
-//       if(success === 1){
-//         location.href= "homeLogin.php"
-//       }
-//       else{
-//         swal.fire({
-//           title: "error",
-//           text: "Usuario no registrado",
-//           icon: "error"
-//         })
-//       }
-//     })
-// }
-
-// botonSubmit.addEventListener("submit", (e) => {
-//   e.preventDefault()
-//   data()
-// })
