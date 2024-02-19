@@ -1,9 +1,8 @@
 //Enviar los datos del modal editar
 const btn_actualizar= document.getElementById("actualizar");
 const formulario = document.getElementById("form_agregar");
-let obj        
 let buscador= document.getElementById("buscador")
-let buscar = document.getElementById("buscar")
+let botonBuscar = document.getElementById("buscar")
 
 //----------------Mostrar Datos en tabla----------------------------
 function obtenerLista(){
@@ -64,19 +63,19 @@ function cargarDatos(arrayClientes) {
           </button>
         </td>
       `;
-
       contenedor.appendChild(tarjeta);
     }
   );
 }
-
+ 
 function filtrarBuscador(datos) {
   let arrayFiltrado = datos.filter(({ cliente }) =>
-    cliente.includes(buscador.value.toUpperCase())
+    cliente.includes(buscador.value.toLowerCase())
   );
-  console.log(buscador.value);
   cargarDatos(arrayFiltrado);
 }
+
+
 
 fetch("lista_clientes.php")
   .then((response) => response.json())
@@ -87,28 +86,27 @@ fetch("lista_clientes.php")
   });
 
  
-//----------------Actualizar Datos----------------------------
 
+//----------------Actualizar Datos----------------------------
 btn_actualizar.addEventListener("click", function(e){
     e.preventDefault(); // Evitar el envío del formulario
 
     // Obtención de datos
-    const id = document.getElementById("id").value;
-    const cliente = document.getElementById("cliente").value;
-    const telefono = document.getElementById("telefono").value;
-    const codigo = document.getElementById("codigo").value;
-    const modelo = document.getElementById("modelo").value;
-    const falla = document.getElementById("falla").value;
-    const observacion = document.getElementById("observacion").value;
-    const fecha_ingreso = document.getElementById("fecha_ingreso").value;
-    const fecha_entrega = document.getElementById("fecha_entrega").value;
-    const precio = document.getElementById("precio").value;
-    const imei = document.getElementById("imei").value;
-    const estado = document.getElementById("estado").value;
-
-    console.log(estado.value)
+    const id =            document.getElementById("editar-id").value;
+    const cliente =       document.getElementById("editar-cliente").value;
+    const telefono =      document.getElementById("editar-telefono").value;
+    const codigo =        document.getElementById("editar-codigo").value;
+    const modelo =        document.getElementById("editar-modelo").value;
+    const falla =         document.getElementById("editar-falla").value;
+    const observacion =   document.getElementById("editar-observacion").value;
+    const fecha_ingreso = document.getElementById("editar-fecha_ingreso").value;
+    const fecha_entrega = document.getElementById("editar-fecha_entrega").value;
+    const precio =        document.getElementById("editar-precio").value;
+    const imei =          document.getElementById("editar-imei").value;
+    const estado =        document.getElementById("editar-estado").value;
+ 
     // Validación de datos
-    if (cliente === "" || codigo === "" || modelo === "" || falla === "") {
+    if (cliente === "" || codigo === "" || modelo === "" || falla === "" ) {
       alert("Ingrese todos los datos, por favor.");
       return;
     }
@@ -127,7 +125,7 @@ btn_actualizar.addEventListener("click", function(e){
         fecha_entrega,
         precio,
         imei,
-        estado,
+        estado
       }),
       headers: {
         "Content-Type": "application/json",
@@ -140,7 +138,7 @@ btn_actualizar.addEventListener("click", function(e){
 
           // Muestra el modal si todo está bien
           lanzarAlerta("Solicitud exitosa", "La edición se realizó con éxito", "success")
-          obtenerLista();
+          location.reload();
         } else {
           // Muestra el modal si hay un error
           lanzarAlerta("Ocurrió un error", "La edición no se realizó con éxito", "error")
@@ -157,18 +155,18 @@ function editarModal(id) {
   .then((response) => response.json())
   .then((elemento) => {
     // Rellenar el formulario
-    document.getElementById("id").value = elemento[0].id;
-    document.getElementById("cliente").value = elemento[0].cliente;
-    document.getElementById("telefono").value = elemento[0].telefono;
-    document.getElementById("codigo").value = elemento[0].codigo;
-    document.getElementById("modelo").value = elemento[0].modelo;
-    document.getElementById("falla").value = elemento[0].falla;
-    document.getElementById("observacion").value = elemento[0].observacion;
-    document.getElementById("fecha_ingreso").value = elemento[0].fecha_ingreso;
-    document.getElementById("fecha_entrega").value = elemento[0].fecha_entrega;
-    document.getElementById("precio").value = elemento[0].precio;
-    document.getElementById("imei").value = elemento[0].imei;
-    document.getElementById("estado").value = elemento[0].estado;
+    document.getElementById("editar-id").value =            elemento[0].id;
+    document.getElementById("editar-cliente").value =       elemento[0].cliente;
+    document.getElementById("editar-telefono").value =      elemento[0].telefono;
+    document.getElementById("editar-codigo").value =        elemento[0].codigo;
+    document.getElementById("editar-modelo").value =        elemento[0].modelo;
+    document.getElementById("editar-falla").value =         elemento[0].falla;
+    document.getElementById("editar-observacion").value =   elemento[0].observacion;
+    document.getElementById("editar-fecha_ingreso").value = elemento[0].fecha_ingreso;
+    document.getElementById("editar-fecha_entrega").value = elemento[0].fecha_entrega;
+    document.getElementById("editar-precio").value =        elemento[0].precio;
+    document.getElementById("editar-imei").value =          elemento[0].imei;
+    document.getElementById("editar-estado").value =        elemento[0].estado;
   });
 }
 
@@ -187,8 +185,7 @@ function lanzarAlerta(title, text, icon){
 function borrarCliente(event) {
   const button = event.target;
   // Obtener el ID del cliente del atributo "data-id" del botón
-  const id = button.getAttribute("data-id");
-
+  const id = button.getAttribute('data-id');
   // Confirmar la eliminación con el usuario
   //if (confirm("¿Estás seguro de que deseas eliminar este cliente?")) {
   // }
@@ -220,7 +217,9 @@ function borrarCliente(event) {
         // Mostrar una alerta si el cliente se eliminó correctamente
         if (data.success) {
           lanzarAlerta("Cliente eliminado", "El cliente ha sido eliminado correctamente", "success");
-          obtenerLista(); // Actualizar la lista de clientes después de la eliminación
+          location.reload();
+          //obtenerLista(); // Actualizar la lista de clientes después de la eliminación
+          
         } else {
           lanzarAlerta("Error", "No se pudo eliminar el cliente", "error");
         }
@@ -255,7 +254,7 @@ formulario.addEventListener("submit", (event) => {
   const fecha_entrega = document.getElementById("modal-fecha_entrega").value;
   const precio = document.getElementById("modal-precio").value;
   const imei = document.getElementById("modal-imei").value;
-  const estado = document.getElementById("modal-estado").value
+  const estado = document.getElementById("modal-estado").value;
   // Agregar los datos al objeto FormData
   formData.append('modal-cliente', cliente);
   formData.append('modal-telefono', telefono);
@@ -267,13 +266,10 @@ formulario.addEventListener("submit", (event) => {
   formData.append('modal-fecha_entrega', fecha_entrega);
   formData.append('modal-precio', precio);
   formData.append('modal-imei', imei);
-  formData.append('modal-estado', estado)
-  // console.log(formData.get('modal-cliente'));
-  // console.log(formData.get('modal-codigo'));
-  // console.log(formData.get('modal-modelo'));
+  formData.append('modal-estado', estado);
 
   // Deshabilitar el botón mientras se envían los datos
-  agregar.disabled = true
+  agregar.disabled = true;
   // Enviar los datos mediante una solicitud fetch
   fetch('agregar_cliente.php',{
     method:'POST',
@@ -290,7 +286,7 @@ formulario.addEventListener("submit", (event) => {
         $('#modal-insertar').modal('hide');
         // Muestra el modal si todo está bien
         lanzarAlerta("Solicitud exitosa", "Se agregó al usuario con éxito", "success");
-        obtenerLista();
+        //obtenerLista();
       } else {
         // Muestra el modal si hay un error
         lanzarAlerta("Solicitud fallida", "No se pudo agregar al usuario", "error");
@@ -319,6 +315,12 @@ function filtrarPorEstado(clientes, estadoSeleccionado) {
   return arrayFiltrado;
 }
 
+
+function eliminarFiltro(){
+  selectEstado.value = "";
+  //obtenerLista()
+} 
+
 fetch("lista_clientes.php")
       .then((response) =>  response.json())
       .then((datos) => {
@@ -331,18 +333,21 @@ fetch("lista_clientes.php")
       });
     });
 
-    //-------------Paginacion-----------------
+
+
+//-------------Paginacion-----------------
+
+/*
 function cargarPagina(page, pageSize) {
-  const url = `paginacion.php?page=${page}&pageSize=${pageSize}`;
+  const url = `paginacion.php?page-nr=${page}&pageSize=${pageSize}`;
 
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      // En este punto, 'data' contiene los datos de la página solicitada
-      // Aquí debes actualizar la tabla con los nuevos datos recibidos
+      // 'data' contiene los datos de la página solicitada
       cargarDatos(data.data);
 
-      // Luego, actualizamos los controles de paginación con los datos recibidos
+      // Actualizamos los controles de paginación con los datos recibidos
       actualizarControlesPaginacion(page, pageSize, data.total);
     })
     .catch(error => {
@@ -352,53 +357,21 @@ function cargarPagina(page, pageSize) {
 }
 
 // Llamada inicial para cargar la primera página
-cargarPagina(1, 5); // Puedes ajustar los valores de página y pageSize según tus necesidades
+cargarPagina(1, 4); // Puedes ajustar los valores de página y pageSize según tus necesidades
 
-// Función para actualizar los controles de paginación
-function actualizarControlesPaginacion(page, pageSize, total) {
-  const anteriorElement = document.getElementById('anterior');
-  const siguienteElement = document.getElementById('siguiente');
-  const numPaginaElement = document.getElementById('numPagina');
+// Resto del código JavaScript...
 
-  // Actualizar el número de página actual y el total de páginas
-  numPaginaElement.textContent = `Página ${page} de ${Math.ceil(total / pageSize)}`;
 
-  // Habilitar o deshabilitar el enlace de página anterior según corresponda
-  if (page === 1) {
-    anteriorElement.classList.add('disabled');
-  } else {
-    anteriorElement.classList.remove('disabled');
-  }
-
-  // Habilitar o deshabilitar el enlace de página siguiente según corresponda
-  if (page === Math.ceil(total / pageSize)) {
-    siguienteElement.classList.add('disabled');
-  } else {
-    siguienteElement.classList.remove('disabled');
-  }
-
-  // Asignar los manejadores de eventos a los enlaces de página anterior y siguiente
-  anteriorElement.addEventListener('click', () => {
-    if (page > 1) {
-      cargarPagina(page - 1, pageSize);
-    }
-  });
-
-  siguienteElement.addEventListener('click', () => {
-    if (page < Math.ceil(total / pageSize)) {
-      cargarPagina(page + 1, pageSize);
-    }
-  });
-}
+*/
 //-------------Fin Paginacion-----------------
+
 
 //-------------Inicio generado de codigo-----------------
 let numeros= "0123456789"
 let letras= "abcdefghijklmnopqrstuvwxyz"
 let todo= numeros + letras
 
-function generateRandomNumber() {
-
+function generateRandomNumber(){
   let longitud= 6
   let password= ""
   for(let x = 0; x<longitud; x++){
@@ -409,4 +382,15 @@ function generateRandomNumber() {
   // Asigna el número aleatorio al input
   document.getElementById('modal-codigo').value = password;
 }
-//-------------Fin generado de codigo-----------------
+//-------------Fin generado de codigo----------------- 
+
+function mostrar(){
+  document.getElementById("accordion").style.display = "block";
+  document.getElementById("boton-1").style.display = "none"
+}
+
+function ocultar(){
+  document.getElementById("accordion").style.display = "none";
+  document.getElementById("boton-1").style.display = "block"
+
+}

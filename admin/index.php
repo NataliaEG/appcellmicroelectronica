@@ -1,7 +1,8 @@
 <?php 
 require_once "vistas/parte_superior.php"; 
+require_once "paginacion.php";
 ?>
-    <style>
+<style>
 
 #button{
   display: flex;
@@ -13,11 +14,40 @@ require_once "vistas/parte_superior.php";
 .form-select{
     width: 75%;
 }
+
+@media (min-width: 576px){
+  .col-sm-4 {
+    margin: 0px 60px 9px 55px;
+    width: 29.333333%;
+  }
+}
+
+.row {
+    /* --bs-gutter-x: 125.5rem; */
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.anterior .siguiente{
+  cursor: pointer;
+}
+.anterior{
+  cursor: pointer;
+}
+
+#wrapper #content-wrapper #content {
+    font-size: small;
+}
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    --bs-gutter-x: -1.5rem;
+}
+
 </style>
 
 <!--CONTENT-HEADER-->
 <section class="container content-header text-center m-2">
   <div class="row align-items-start">
+    
 
     <!--Boton agregar-->
     <button class="btn btn-primary boton col-4 col-sm-4" data-toggle="modal" data-target="#modal-insertar">
@@ -54,7 +84,6 @@ require_once "vistas/parte_superior.php";
 </section>
 
 
-
 <!-- Tabla clientes -->
 <div class="container">
     <div class="table-responsive">
@@ -79,7 +108,46 @@ require_once "vistas/parte_superior.php";
                 </thead>
                 <tbody id="datosClientes">
                     <!-- Datos del cliente -->
-                    
+                    <?php 
+                      while($row = $result->fetch_assoc())
+                      { ?>                  
+                      
+                      <tr>
+                      <?php $id = $row['id']?>
+
+                        <td scope="row"><?php echo $id; ?></td>
+                        <td scope="row"><?php echo $row["cliente"] ?></td>
+                        <td scope="row"><?php echo $row["telefono"] ?></td>
+                        <td scope="row"><?php echo $row["codigo"] ?></td>
+                        <td scope="row"><?php echo $row["modelo"] ?></td>
+                        <td scope="row"><?php echo $row["falla"] ?></td>
+                        <td scope="row"><?php echo $row["observacion"] ?></td>
+                        <td scope="row"><?php echo $row["fecha_ingreso"] ?></td>
+                        <td scope="row"><?php echo $row["fecha_entrega"] ?></td>
+                        <td scope="row"><?php echo $row["precio"] ?></td>
+                        <td scope="row"><?php echo $row["imei"] ?></td>
+                        <td scope="row"><?php echo $row["estado"] ?></td>
+                        
+                        <td>
+                          <a class="btn btn-primary" onclick="editarModal(<?php echo $id; ?>)" value="<?php echo $id; ?>">
+                            <i class="fa fa-edit"></i>
+                          </a>
+                        </td>
+                        <td>
+                          <a class="btn btn-danger" id="borrar" onclick="borrarCliente(event)" data-id="<?php echo $id; ?>">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
+
+                        
+                        
+                      <tr>
+
+                      <?php
+                      }
+                      ?>
+                     
+
                 </tbody>
             </table>
         </div>
@@ -95,66 +163,66 @@ require_once "vistas/parte_superior.php";
           <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">&times;</button>
         </div>
         <div class="modal-body">
-         <form id="form-editar">
+          <form id="form-editar">
             <div class="mb-3">
-             <label for="id" class="form-label">id</label>
-             <input type="text" class="form-control" id="id" name="id">
+             <label for="editar-id" class="form-label">id</label>
+             <input type="text" class="form-control" id="editar-id" name="editar-id">
             </div>
 
             <div class="mb-3">
-             <label for="cliente" class="form-label">Cliente</label>
-             <input type="text" class="form-control" id="cliente" name="cliente">
+             <label for="editar-cliente" class="form-label">Cliente</label>
+             <input type="text" class="form-control" id="editar-cliente" name="editar-cliente">
             </div>
 
             <div class="mb-3">
-             <label for="telefono" class="form-label">Telefono</label>
-             <input type="text" class="form-control" id="telefono" name="telefono">
+             <label for="editar-telefono" class="form-label">Telefono</label>
+             <input type="text" class="form-control" id="editar-telefono" name="editar-telefono">
             </div>
 
             <div class="mb-3">
-             <label for="codigo" class="form-label">Código</label>
-             <input type="text" class="form-control" id="codigo" name="codigo">
+             <label for="editar-codigo" class="form-label">Código</label>
+             <input type="text" class="form-control" id="editar-codigo" name="editar-codigo">
+             </div> 
+
+            <div class="mb-3">
+             <label for="editar-modelo" class="form-label">Modelo</label>
+             <input type="text" class="form-control" id="editar-modelo" name="editar-modelo" required>
             </div>
 
             <div class="mb-3">
-             <label for="modelo" class="form-label">Modelo</label>
-             <input type="text" class="form-control" id="modelo" name="modelo" required>
+             <label for="editar-falla" class="form-label">Falla</label>
+             <input type="text" class="form-control" id="editar-falla" name="editar-falla" required>
             </div>
 
             <div class="mb-3">
-             <label for="falla" class="form-label">Falla</label>
-             <input type="text" class="form-control" id="falla" name="falla" required>
+             <label for="editar-observacion" class="form-label">Observación</label>
+             <textarea class="form-control" id="editar-observacion" name="editar-observacion" rows="3" required></textarea>
             </div>
 
             <div class="mb-3">
-             <label for="observacion" class="form-label">Observación</label>
-             <textarea class="form-control" id="observacion" name="observacion" rows="3" required></textarea>
+             <label for="editar-fecha_ingreso" type="date" class="form-label">Fecha de Ingreso</label>
+             <input type="date" class="form-control" id="editar-fecha_ingreso" name="editar-fecha_ingreso" required>
             </div>
 
             <div class="mb-3">
-             <label for="fecha_ingreso" class="form-label">Fecha de Ingreso</label>
-             <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" required>
+             <label for="editar-fecha_entrega" type="date" class="form-label">Fecha de Entrega</label>
+             <input type="date" class="form-control" id="editar-fecha_entrega" name="editar-fecha_entrega" required>
             </div>
 
             <div class="mb-3">
-             <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
-             <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
+             <label for="editar-precio" class="form-label">Precio</label>
+             <input type="text" class="form-control" id="editar-precio" name="editar-precio" required>
             </div>
 
             <div class="mb-3">
-             <label for="precio" class="form-label">Precio</label>
-             <input type="text" class="form-control" id="precio" name="precio" required>
+             <label for="editar-imei" class="form-label">IMEI</label>
+             <input type="text" class="form-control" id="editar-imei" name="editar-imei" required>
             </div>
 
             <div class="mb-3">
-             <label for="imei" class="form-label">IMEI</label>
-             <input type="text" class="form-control" id="imei" name="imei" required>
-            </div>
-
-            <div class="mb-3">
-             <label for="estado" class="form-label">Estado</label>            
-              <select name="estado" id="estado" class="form-select" required>
-                <option value="">SELECCIONAR ESTADO</option>
+             <label for="editar-estado" class="form-label">Estado</label>            
+              <select name="editar-estado" id="editar-estado" class="form-select" required>
+                <option value="" selected>SELECCIONAR ESTADO</option>
                 <option value="RECIBIDO">RECIBIDO</option>
                 <option value="DIAGNOSTICADO">DIAGNOSTICADO</option>
                 <option value="EN_REPARACION">EN REPARACION</option>
@@ -165,7 +233,6 @@ require_once "vistas/parte_superior.php";
                 <option value="DEMORADO">DIAGNOSTICADO</option>
                 <option value="SIN_SOLUCCION">SIN SOLUCCION</option>
               </select>
-            
             </div>
            <button type="submit" class="btn btn-primary" id="actualizar">Guardar Cambios</button>
          </form>
@@ -232,7 +299,7 @@ require_once "vistas/parte_superior.php";
           </div>
           <div class="mb-3">
             <label for="modal-estado" class="form-label" name="modal-estado">Estado</label>
-            <select name="estado" id="modal-estado" class="form-select" required>
+            <select name="modal-estado" id="modal-estado" class="form-select" required>
               <option value="">SELECCIONAR ESTADO</option>
               <option value="RECIBIDO">RECIBIDO</option>
               <option value="DIAGNOSTICADO">DIAGNOSTICADO</option>
@@ -259,23 +326,86 @@ require_once "vistas/parte_superior.php";
 <!--Inicio Paginacion-->
 <nav aria-label="Page navigation example">
     <ul class="pagination">
-        <li class="page-item" id="anterior">
-          <button class="page-link">
-            Anterior
-          </button>
+        <li class="page-item" id="first" href="">
+          <a class="page-link" href="?page-nr=1">
+            Primero
+                    </a>
         </li>
+
+        <?php
+          if(isset($_GET['page-nr']) && $_GET['page-nr'] > 1){ 
+          ?>
+
+          <li class="page-item" id="anterior">
+            <a class="page-link" href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>">
+              Anterior
+            </a>
+          </li>
+                      
+          <?php
+          }
+          else{
+          ?>
+
+              <li class="page-item" id="anterior">
+                <a class="page-link">
+                  Anterior
+                </a>
+              </li>
+
+          <?php
+          }
+        ?>
+ 
+        
         
         <li class="page-item">
           <a class="page-link" id="numPagina">
-                
+            Pagina <?php echo $_GET['page-nr'] ?> de <?php echo $pages ?> paginas 
           </a>
         </li>
-        <li class="page-item" id="siguiente">
-          <button class="page-link">
-            Siguiente
-          </button>
+ 
+         <?php
+          if(!isset($_GET['page-nr'])){
+          ?>
+
+            <li class="page-item" id="siguiente">
+              <a href="?page-nr=2" class="page-link">
+                Siguiente
+              </a>
+            </li>
+
+        <?php
+          }
+          else{
+            if($_GET['page-nr'] >= $pages){
+              ?>
+
+                <li class="page-item" id="siguiente">
+                  <a class="page-link">
+                    Siguiente
+                  </a>
+                </li>
+              
+            <?php
+            }else{
+            ?>
+                  <li class="page-item" id="siguiente">
+                    <a class="page-link" href="?page-nr=<?php echo $_GET['page-nr'] +1  ?>">
+                      Siguiente
+                    </a>
+                  </li>
+                <?php
+              }
+            }
+        ?>
+ 
+        <li class="page-item" id="last">
+          <a class="page-link" href="?page-nr=<?php echo $pages ?>">
+            Ultimo
+          </a>
         </li>
-    </ul>
+    </ul> 
 </nav>
 <!--Fin Paginacion-->
 
