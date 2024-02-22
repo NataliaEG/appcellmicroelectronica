@@ -41,18 +41,24 @@ if (!isset($_SESSION['nombre'])) {
 </head>
 
 <style>
-    
+ 
+
 .pagination {
   justify-content: center;
 }
 
 #btn-reiniciar{
-    margin: 10px;
+    width: auto;
 }
 
 .accordion {
     display: none;
-}  
+}   
+.content-header {
+  margin: 0px 26px 8px 55px;
+  width: 70%;
+}
+
 </style>
 
 <body id="page-top">
@@ -65,7 +71,7 @@ if (!isset($_SESSION['nombre'])) {
         </div>
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordion">
+        <ul class="navbar-nav bg-gradient-gray sidebar sidebar-dark accordion" id="accordion">
             
             <div class="toggle_btn">
                 <button class="btn btn-danger" id="boton-2" onclick="ocultar()"><i class="fas fa-times close-btn"></i></button>
@@ -73,10 +79,8 @@ if (!isset($_SESSION['nombre'])) {
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                    <img src="../img/appcell-logo-2.png" width="105px">
+                    <img src="../img/logo-principal.png" width="95px"     alt="" >
             </a>
-
-            
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -99,7 +103,6 @@ if (!isset($_SESSION['nombre'])) {
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <a id="btn-reiniciar" class="btn btn-primary" type="button" href="?page-nr=1"><i class="fas fa-arrow-left" ></i> Reiniciar</a>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

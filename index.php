@@ -12,7 +12,7 @@ if(isset($_SESSION['nombre'])){
 <!doctype html>
 <html lang="es">
   <head>
-    <title>Appcel</title>
+    <title>AppCell</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -55,7 +55,7 @@ if(isset($_SESSION['nombre'])){
         </li>
 
         <li>
-          <a href="#titulo_reparacion">Servicos</a>
+          <a href="#titulo_reparacion">Servicios</a>
         </li>
 
         <li>
@@ -132,10 +132,9 @@ if(isset($_SESSION['nombre'])){
     <div class="product-card mt-3 mb-3">
       <h2 class="name">Macbook</h2>
       <p class="costo">Contamos con un equipo de expertos en reparación de MacBook que se encargará de solucionar cualquier problema que pueda presentar tu dispositivo, utilizando piezas de repuesto originales y brindando un servicio rápido y eficiente.</p>
-      <a href="#" class="popup-btn">Mas Informacion</a>
       <img src="https://i.pinimg.com/originals/c5/95/c9/c595c9dc092cb7fbfecedde02a6952ae.png"  class="product-img">
     </div>
-
+    
     <div class="popup-view">
         <div class="popup-card">
           <a href="#"><i class="fas fa-times close-btn"></i></a>
@@ -161,7 +160,6 @@ if(isset($_SESSION['nombre'])){
     <div class="product-card mt-3 mb-3">
       <h2 class="name">Celulares Iphone</h2>
       <p class="costo">Nuestro equipo de especialistas en reparación de iPhone está preparado para resolver cualquier inconveniente que pueda surgir en tu dispositivo, proporcionando un servicio ágil y confiable con el uso de repuestos genuinos.</p>
-      <a href="#" class="popup-btn">Mas Informacion</a>
       <img src="https://pngimg.com/d/iphone_14_PNG6.png"  class="product-img">
     </div>
     <div class="popup-view">
@@ -191,7 +189,6 @@ if(isset($_SESSION['nombre'])){
     <div class="product-card mt-3 mb-3">
       <h2 class="name">Ipad</h2>
       <p class="costo">Nuestro equipo está capacitado para solucionar cualquier problema, ya sea relacionado con la pantalla, la batería, el software u otros inconvenientes, ofreciendo un servicio confiable y eficiente para que puedas disfrutar nuevamente de tu iPad.</p>
-      <a href="#" class="popup-btn">Mas Informacion</a>
       <img src="./img/ipad.png"  class="product-img">
     </div>
     <div class="popup-view">
@@ -221,7 +218,6 @@ if(isset($_SESSION['nombre'])){
     <div class="product-card mt-3 mb-3">
       <h2 class="name">Apple Watch</h2>
       <p class="costo">En nuestro centro de reparación especializado, nos enfrentamos a cualquier obstáculo que pueda surgir en tu dispositivo. Puedes tener la tranquilidad de que restauraremos tu Apple Watch a su estado óptimo, permitiéndote aprovechar al máximo todas sus funcionalidades.</p>
-      <a href="#" class="popup-btn">Mas Informacion</a>
       <img src="https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP877/apple-watch-se-2nd-gen.png"  class="product-img">
     </div>
     <div class="popup-view">
@@ -414,34 +410,65 @@ if(isset($_SESSION['nombre'])){
       <div class="data">
             <h3>Complete este formulario para contactarnos</h3>
 
-        <p><i class="fas fa-phone"></i>Tel: 3455465567</p>
-        <p><i class="fas fa-envelope"></i>Email: Nicolasgomez8010@gmail.com</p>
-        <p><i class="fas fa-map"></i>Ubicacion: Calle 3254</p>
+        <a href="https://api.whatsapp.com/send/?phone=543757528025&text&type=phone_number&app_absent=0"><i class="fas fa-phone"></i> WhatsApp: 3757528025</a>
+        <a href= "https://www.instagram.com/appcell_microelectronica"><i class="fa fa-instagram"></i> Instagram: appcell_microelectronica</a>
+        <a href= "https://www.facebook.com/appcellresistencia" ><i class="fa fa-facebook"></i> Facebook: appcell_resistencia</a>
       </div>
     </div>
     
-    <form id="contact-form" class="form-cons" action="https://formsubmit.co/nicolasgomez8010@gmail.com" method="POST">
+    <form id="contact-form" class="form-cons" action="https://formsubmit.co/nataliagomez2808@gmail.com" method="POST">
       <div class="input-box">
           <input type="text" id="nombre" name="nombre" class="form-input"  placeholder="Escriba su nombre">
-          <!-- <input type="text" required placeholder="Nombre y apellido"> -->
           <i class="fas fa-user"></i>
       </div>
+      
+      <div class="input-box">
+        <input type="text" id="contacto" name="contacto" class="form-input"  placeholder="Escriba su correo o numero de telefono">
+        </div>
 
       <div class="input-box">
         <select id="modelo" name="modelo" required>
           <option value="">Seleccionar modelo</option>
-          <option value="Modelo 1">Modelo 1</option>
-          <option value="Modelo 2">Modelo 2</option>
-          <option value="Modelo 3">Modelo 3</option>
+          <option value="iPhone 6"> iPhone 6 </option>
+          <option value="iPhone 14 Pro Max"> iPhone 14 Pro Max </option>
+          <option value="iPhone 14 pro"> iPhone 14 pro </option>
+          <option value="iPhone 14"> iPhone 14 </option>
+          <option value="iPhone 13 Pro Max"> iPhone 13 Pro Max </option>
+          <option value="iPhone 13 pro"> iPhone 13 pro </option>
+          <option value="iPhone 13 mini"> iPhone 13 mini  </option>
+          <option value="iPhone 13"> iPhone 13  </option>
+          <option value="iPhone 12 Pro Max"> iPhone 12 Pro Max </option>
+          <option value="iPhone 12 pro"> iPhone 12 pro</option>
+          <option value="iPhone 12 mini"> iPhone 12 mini </option>
+          <option value="iPhone 12"> iPhone 12 </option>
+          <option value="iPhone 11 Pro Max"> iPhone 11 Pro Max</option>
+          <option value="iPhone 11 pro"> iPhone 11 pro  </option>
+          <option value="iPhone 11"> iPhone 11 </option>
+          <option value="iPhone XR"> iPhone XR </option>
+          <option value="iPhone XS Max"> iPhone XS Max </option>
+          <option value="iPhone XS"> iPhone XS </option>
+          <option value="iPhone X "> iPhone X </option>
+          <option value="iPhone 8 Plus"> iPhone 8 Plus </option>
+          <option value="iPhone 8 "> iPhone 8  </option>
+          <option value="iPhone 7 Plus"> iPhone 7 Plus </option>
+          <option value="iPhone 7 "> iPhone 7 </option>
+          <option value="iPhone 6s Plus"> iPhone 6s Plus </option>
+          <option value="iPhone 6s"> iPhone 6s </option>
+          <option value="iPhone 6 Plus"> iPhone 6 Plus </option>
         </select>
       </div>
-
       <div class="input-box">
         <select id="problema" name="problema" required>
           <option value="">Seleccionar problema</option>
-          <option value="Problema 1">Problema 1</option>
-          <option value="Problema 2">Problema 2</option>
-          <option value="Problema 3">Problema 3</option>
+          <option value="Cables o adaptadores "> Cables o adaptadores </option>
+          <option value="Daño por agua o líquido Problema audio<"> Daño por agua o líquido Problema audio </option>
+          <option value="Equipo lento "> Equipo lento </option>
+          <option value="No enciende"> No enciende </option>
+          <option value="Cámara no funciona"> Cámara no funciona </option>
+          <option value="Cambio de batería"> Cambio de batería </option>
+          <option value="Tapa trasera rota"> Tapa trasera rota </option>
+          <option value="Pantalla rota"> Pantalla rota </option>
+          <option value="Otros"> Otros </option>
         </select>
       </div>
 
@@ -450,7 +477,7 @@ if(isset($_SESSION['nombre'])){
       </div>
 
       <button type="submit" name="submit" value="enviar">Enviar</button>
-      <input type="hidden" name="_next" value="index.php">
+      <input type="hidden" name="_next" value="https://appcelstore.000webhostapp.com/index.php">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_autoresponse" value="Mensaje enviado">
 
@@ -592,16 +619,16 @@ if(isset($_SESSION['nombre'])){
 <footer class="mt-5">
   <!-- <img src="./img/logo-principal.png" width="45px" alt="" srcset=""> -->
   <div class="social-icons-container">
-    <a href="#" class="social-icon bg3"><i class="fa fa-instagram"></i></a>
-    <a href="#" class="social-icon bg1"><i class="fa fa-facebook"></i></a>
-    <a href="#" class="social-icon bg2" ><i class="fa fa-twitter"></i></a>
+    <a href="https://www.instagram.com/appcell_microelectronica" class="social-icon bg3"><i class="fa fa-instagram"></i></a>
+    <a href="https://www.facebook.com/appcellresistencia" class="social-icon bg1"><i class="fa fa-facebook"></i></a>
+    <a href="https://api.whatsapp.com/send/?phone=543757528025&text&type=phone_number&app_absent=0" class="social-icon bg2" ><i class="fa fa-whatsapp"></i></a>
   </div>
   <ul class="footer-menu-container">
     <!-- <li class="menu-item">Nosotros</li>
     <li class="menu-item">Servicios</li>
     <li class="menu-item">Trabajos</li> -->
   </ul>
-  <span>Copyright &copy;  Appcel 2024</span>
+  <span>Copyright &copy;  AppCell 2024</span>
 </footer>
 <!--Fin Footer--> 
 

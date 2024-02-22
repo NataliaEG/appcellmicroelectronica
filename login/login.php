@@ -1,7 +1,6 @@
 <?php
 include "../conexion.php";
-session_start();
-
+ 
 // Verificar si el usuario ya ha iniciado sesión
 if (isset($_SESSION['nombre'])) {
     // El usuario ya ha iniciado sesión, redirigirlo a la página protegida
@@ -12,7 +11,7 @@ if (isset($_SESSION['nombre'])) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Appcel</title>
+	<title>AppCell</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -55,7 +54,7 @@ if (isset($_SESSION['nombre'])) {
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Nombre de usuario requerido">
 						<span class="label-input100">Usuario</span>
-						<input class="input100" type="text" name="usuario" placeholder="Ingrese nobre de usuario"
+						<input class="input100" type="text" name="usuario" placeholder="Ingrese nombre de usuario"
 						id="usuario" required autocomplete="off">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
@@ -83,16 +82,16 @@ if (isset($_SESSION['nombre'])) {
 					</div>
 
 					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
+						<a href="https://www.facebook.com/appcellresistencia" class="login100-social-item bg1">
 							<i class="fa fa-facebook"></i>
 						</a>
 
-						<a href="#" class="login100-social-item bg2">
-							<i class="fa fa-twitter"></i>
+						<a href="https://www.instagram.com/appcell_microelectronica" class="login100-social-item bg3">
+							<i class="fa fa-instagram"></i>
 						</a>
 
-						<a href="#" class="login100-social-item bg3">
-							<i class="fa fa-google"></i>
+						<a href="https://api.whatsapp.com/send/?phone=543757528025&text&type=phone_number&app_absent=0" class="login100-social-item bg2">
+							<i class="fa fa-whatsapp"></i>
 						</a>
 					</div>
 

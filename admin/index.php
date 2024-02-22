@@ -53,7 +53,9 @@ require_once "paginacion.php";
     <button class="btn btn-primary boton col-4 col-sm-4" data-toggle="modal" data-target="#modal-insertar">
       Agregar <i class="fas fa-user"></i>
     </button>
-    
+
+    <a id="btn-reiniciar" class="btn btn-primary form-select" type="button" href="?page-nr=1"><i class="fas fa-arrow-left" ></i> Reiniciar</a>
+
     <!--Filtro de estado 2-->
     <div class="col-4 col-sm-4">
       <select  id="estado" class="form-select" style=" width: 104%;">
@@ -360,15 +362,30 @@ require_once "paginacion.php";
         
         
         <li class="page-item">
+          <?php
+          if(isset($_GET['page-nr']) && $_GET['page-nr'] > 1){ 
+          ?>
+            <a class="page-link" id="numPagina">
+              Pagina <?php echo $_GET['page-nr'] ?> de <?php echo $pages ?> paginas 
+            </a>
+          <?php
+          }
+          else{
+          ?>
+
           <a class="page-link" id="numPagina">
-            Pagina <?php echo $_GET['page-nr'] ?> de <?php echo $pages ?> paginas 
+              Pagina 1 de <?php echo $pages ?> paginas 
           </a>
+          <?php
+          }
+          ?>
+
         </li>
  
+
          <?php
           if(!isset($_GET['page-nr'])){
           ?>
-
             <li class="page-item" id="siguiente">
               <a href="?page-nr=2" class="page-link">
                 Siguiente
